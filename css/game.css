@@ -40,18 +40,19 @@ tbody tr td button {
     background-color: #464646;
 }
 
-tbody tr td button:hover {
+.option:hover {
     opacity: 0.8;
-}
-
-tbody tr td:active {
-    opacity: 0.6;
 }
 
 .container {
     margin: auto;
     display: flex;
     justify-content: center;
+}
+
+.selected {
+    background-color: #2e9cca;
+    cursor: not-allowed;
 }
 
 button#btn-start {
