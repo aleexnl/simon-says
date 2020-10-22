@@ -27,39 +27,39 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
                     </tr>
                     <tr>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
                     </tr>
                     <tr>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
                     </tr>
                     <tr>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
                     </tr>
                     <tr>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
-                        <td><button type="submit"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
+                        <td><button type="submit" class="option"></button></td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -72,6 +72,7 @@
             </table>
         </div>
     </div>
+    <script src="../js/game.js"></script>
 </body>
 
 </html>
