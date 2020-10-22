@@ -3,11 +3,6 @@
     src: url("../fonts/VCR_OSD_MONO.ttf");
 }
 
-* {
-    color: white;
-    font-family: AmongUsFont;
-}
-
 body#victory {
     background-color: black;
     display: flex;
@@ -15,11 +10,13 @@ body#victory {
 }
 
 p#title {
-    font-size: 120px;
+    font-size: 0px;
     font-weight: bold;
     color: #e44024;
     text-align: center;
     width: 100%;
+    font-family: AmongUsFont;
+    animation: 1.25s both titleEffect;
 }
 
 div.box {
@@ -56,4 +53,14 @@ form#form-home {
 
 form#form-retry {
     margin: 25px auto auto 25px;
+}
+
+@keyframes titleEffect {
+    From {
+        font-size: 0px;
+    }
+
+    To {
+        font-size: 120px;
+    }
 }

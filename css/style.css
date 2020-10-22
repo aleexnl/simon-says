@@ -10,9 +10,10 @@ body {
     font-family: "Ubuntu Mono", monospace;
 }
 header {
-    display: inline-flex;
+    display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-between; 
+    position: fixed;
 }
 
 header > * {
