@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego</title>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
 </head>
 
 <body>
+    <header>
+        <h2>Simon says</h2>
+        <a href="../index.html">Home</a>
+        <h3 id="uname"></h3>
+    </header>
     <div class="container">
         <div class="game">
-
             <table>
                 <thead>
                     <tr>
@@ -59,9 +64,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td class="box-btn"><button id="btn-resolv" type="submit">RESOLDRE</button></td>
-                        <td colspan="3"></td>
                         <td class="box-btn"><button id="btn-start" type="submit">INICIA PARTIDA</button></td>
+                        <td colspan="3"></td>
+                        <td class="box-btn"><button id="btn-resolv" type="submit">RESOLDRE</button></td>
                     </tr>
                 </tfoot>
             </table>
