@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+@font-face {
+    font-family: AmongUsFont;
+    src: url("../fonts/VCR_OSD_MONO.ttf");
+}
+
+body {
+    background-color: #25274d;
+    color: rgb(255, 255, 255);
+    font-family: "Ubuntu Mono", monospace;
+}
 header {
     display: flex;
 }
@@ -13,33 +24,4 @@ header > a {
     margin-left: 20%;
     text-decoration: none;
     font-size: 1.17em;
-}
-
-body {
-    background-image: url(https://i.pinimg.com/originals/cc/4e/01/cc4e012fc8d96cbe52d99dd863743823.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
-    color: white;
-}
-
-h1 {
-    text-align: center;
-    padding: 2%;
-}
-
-h3 {
-    text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-#form {
-    align-content: center;
-    text-align: center;
-    padding: 2%;
-}
-
-input[type="submit"]{
-    margin: 2%;
 }
