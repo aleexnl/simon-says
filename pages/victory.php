@@ -17,7 +17,7 @@
             <?php
                 session_start();
                 $_SESSION["user"] = $_GET["uname"];
-                print_r($_SESSION["user"]);
+                echo'($_SESSION["user"])';
             ?>
         </h3>
     </header>
