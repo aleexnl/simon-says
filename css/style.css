@@ -10,7 +10,9 @@ body {
     font-family: "Ubuntu Mono", monospace;
 }
 header {
-    display: flex;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 header > * {
@@ -21,7 +23,6 @@ header > * {
 }
 
 header > a {
-    margin-left: 20%;
     text-decoration: none;
     font-size: 1.17em;
 }

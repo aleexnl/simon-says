@@ -8,12 +8,17 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
 </head>
-
 <body>
     <header>
         <h2>Simon says</h2>
         <a href="../index.html">Home</a>
-        <h3 id="uname"></h3>
+        <h3 id="uname">
+            <?php
+                session_start();
+                $_SESSION["user"] = $_GET["uname"];
+                print_r($_SESSION["user"]);
+            ?>
+        </h3>
     </header>
     <div class="container">
         <div class="game">
