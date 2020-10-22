@@ -6,13 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego</title>
     <style>
+        html,
+        body {
+            height: 100%;
+        }
+
         body {
             color: #f1f6f9;
             font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            margin: 0;
+            background-color: #1b1b1b;
+        }
+
+        .game {
+            border: 6px solid #000;
         }
 
         table {
-            border: 10px solid #A4A4A4;
+            border: 65px solid #A4A4A4;
             border-collapse: collapse;
         }
 
@@ -28,17 +40,16 @@
 
         thead tr td {
             background-color: #000000 !important;
-
         }
 
-        tbody tr td {
+        tbody tr td button {
             cursor: pointer;
             height: 100px;
             width: 100px;
             background-color: #464646;
         }
 
-        tbody tr td:hover {
+        tbody tr td button:hover {
             opacity: 0.8;
         }
 
@@ -47,19 +58,26 @@
         }
 
         .container {
-            margin: 0% 15%;
+            margin: auto;
             display: flex;
             justify-content: center;
+        }
+
+        button#btn-start {
+            width: 100px;
+        }
+
+        td.box-btn button {
+            width: -webkit-fill-available;
+            height: 40px;
         }
     </style>
 </head>
 
 <body>
-    <header>
-
-    </header>
     <div class="container">
         <div class="game">
+
             <table>
                 <thead>
                     <tr>
@@ -70,90 +88,46 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
                     </tr>
                     <tr>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
                     </tr>
                     <tr>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
                     </tr>
                     <tr>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
                     </tr>
                     <tr>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
+                        <td><button type="submit"></button></td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td><button>RESOLDRE</button></td>
+                        <td class="box-btn"><button id="btn-resolv" type="submit">RESOLDRE</button></td>
                         <td colspan="3"></td>
-                        <td><button>INICIA PARTIDA</button></td>
+                        <td class="box-btn"><button id="btn-start" type="submit">INICIA PARTIDA</button></td>
                     </tr>
                 </tfoot>
             </table>
