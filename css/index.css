@@ -1,0 +1,21 @@
+#form {
+    align-content: center;
+    text-align: center;
+    padding: 2%;
+}
+
+input[type="submit"] {
+    margin: 2%;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 128px;
+    font-family: "AmongUsFont", Arial, Helvetica, sans-serif;
+    margin: 5% 15% 5px 15%;
+}
+.subtitle {
+    text-align: center;
+    margin: 0 15%;
+    font-family: "Ubuntu Mono", monospace;
+}

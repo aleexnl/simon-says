@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+@font-face {
+    font-family: AmongUsFont;
+    src: url("../fonts/VCR_OSD_MONO.ttf");
+}
+
+body {
+    background-color: #25274d;
+    color: rgb(255, 255, 255);
+    font-family: "Ubuntu Mono", monospace;
+}
+header {
+    display: flex;
+}
+
+header > * {
+    color: white;
+    font-weight: bold;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+header > a {
+    margin-left: 20%;
+    text-decoration: none;
+    font-size: 1.17em;
+}
