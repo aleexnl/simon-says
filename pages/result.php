@@ -2,25 +2,12 @@
 
 session_start();
 
-function getPositionBoxes($positionBoxes) {
-    return true;
-}
-
-function getNumBoxes() {
-    return 7;
-}
-
-//if (isset($_POST['var'])) {
-    $numBoxes = 7;
-    $positionBoxes = 0;
-
-    if ($numBoxes == getNumBoxes() && getPositionBoxes($positionBoxes)) {
+if (isset($_GET['result'])) {
+    if ($_GET['result'] == "win") {
         $_SESSION['endgame'] = "win";
         header("location:victory.php");
-    }else {
+    }else if ($_GET['result'] == "lose") {
         $_SESSION['endgame'] = "lose";
         header("location:gameover.php");
     }
-//}
-
-?>
+} else header("location:../");
