@@ -42,14 +42,15 @@
                 </thead>
                 <tbody>
                     <?php
+                    print_r($randomNumbers);
                     for ($rowCounter = 0; $rowCounter < 5; $rowCounter++) {
                         echo "<tr>";
                         for ($columnounter = 0; $columnounter < 5; $columnounter++) {
-                            if (in_array($randomCounter++, $randomNumbers)) {
+                            /*if (in_array($randomCounter++, $randomNumbers)) {
                                 echo "<td><button type='submit' class='option selected'></button></td>";
-                            } else {
-                                echo "<td><button type='submit' class='option'></button></td>";
-                            }
+                            } else {*/
+                                echo "<td><button type='submit' class='option' name='btn-option'></button></td>";
+                            //}
                         }
                         echo "</tr>";
                     }
@@ -96,7 +97,7 @@
                     <tr>
                         <td class="box-btn"><button id="btn-start" type="submit">INICIA PARTIDA</button></td>
                         <td colspan="3"></td>
-                        <td class="box-btn"><button id="btn-resolv" type="submit">RESOLDRE</button></td>
+                        <td class="box-btn"><button id="btn-resolv" type="submit" onclick="checkBtn('<?php echo implode(',', $randomNumbers) ?>' )">RESOLDRE</button></td>
                     </tr>
                 </tfoot>
             </table>
