@@ -3,11 +3,6 @@
     src: url("../fonts/VCR_OSD_MONO.ttf");
 }
 
-* {
-    color: white;
-    font-family: AmongUsFont;
-}
-
 body#victory {
     background-color: black;
     display: flex;
@@ -20,6 +15,7 @@ p#title {
     color: #0887fa;
     text-align: center;
     width: 100%;
+    font-family: AmongUsFont;
     animation: 1.25s both titleEffect;
 }
 

@@ -7,6 +7,8 @@
     <title>You lose</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/gameover.css">
+    <?php session_start();
+    if ($_SESSION['endgame'] == "win") header("location:victory.php") ?>
 </head>
 
 <body id="victory">
