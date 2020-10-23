@@ -15,8 +15,8 @@
         <h3 id="uname">
             <?php
                 session_start();
-                $_SESSION["user"] = $_GET["uname"];
-                echo($_SESSION["user"]);
+                $_SESSION["user"] = isset($_GET["uname"]) ? $_GET["uname"] : '';
+                echo isset($_SESSION["user"]) ? $_SESSION['user'] : '';
             ?>
         </h3>
     </header>
