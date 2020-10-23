@@ -6,11 +6,8 @@ for (const buton of buttons) {
         buton.setAttribute("disabled", true); // Disable the button
         buton.classList.remove("option"); // Remove the class option
         buton.classList.add("selected"); // Add the option that is selected
-        // console.log("Click!");
     };
 }
-
-console.log(buttons)
 
 function checkBtn(strRightPosition) {
     let btnSelected = document.getElementsByName("btn-option");
@@ -23,8 +20,12 @@ function checkBtn(strRightPosition) {
                 break;
             }
         }
-        if (allCorrect) window.location.href = "./victory.php"
-        else window.location.href = "./gameover.php"
-    } else window.location.href = "./gameover.php"
+        if (allCorrect) redirectPage("win");
+        else redirectPage("lose");
+    } else redirectPage("lose");
 
+}
+
+function redirectPage(endgame) {
+    window.location.href = "./result.php?result=" + endgame;
 }
