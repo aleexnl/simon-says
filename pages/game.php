@@ -7,6 +7,16 @@
     <title>Juego</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
+    <?php
+    $randomCounter = 1;
+    $randomNumbers = [];
+    while (count($randomNumbers) != 7) {
+        $randomNumber = mt_rand(0, 25);
+        if (!in_array($randomNumber, $randomNumbers)) {
+            array_push($randomNumbers, $randomNumber);
+        }
+    }
+    ?>
 </head>
 <body>
     <header>
@@ -31,6 +41,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    for ($rowCounter = 0; $rowCounter < 5; $rowCounter++) {
+                        echo "<tr>";
+                        for ($columnounter = 0; $columnounter < 5; $columnounter++) {
+                            if (in_array($randomCounter++, $randomNumbers)) {
+                                echo "<td><button type='submit' class='option selected'></button></td>";
+                            } else {
+                                echo "<td><button type='submit' class='option'></button></td>";
+                            }
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+                    <!--
                     <tr>
                         <td><button type="submit" class="option"></button></td>
                         <td><button type="submit" class="option"></button></td>
@@ -66,6 +90,7 @@
                         <td><button type="submit" class="option"></button></td>
                         <td><button type="submit" class="option"></button></td>
                     </tr>
+-->
                 </tbody>
                 <tfoot>
                     <tr>
