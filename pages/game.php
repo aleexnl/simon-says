@@ -21,7 +21,7 @@
 <body>
     <header>
         <h2>Simon says</h2>
-        <a href="../index.html">Home</a>
+        <div id="home"><a href="../">Home</a></div>
         <h3 id="uname">
             <?php
                 session_start();
@@ -95,9 +95,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td class="box-btn"><button id="btn-start" type="submit">INICIA PARTIDA</button></td>
+                        <td class="box-btn"><button id="btn-start" type="submit">START GAME</button></td>
                         <td colspan="3"></td>
-                        <td class="box-btn"><button id="btn-resolv" type="submit" onclick="checkBtn('<?php echo implode(',', $randomNumbers) ?>' )">RESOLDRE</button></td>
+                        <td class="box-btn"><button id="btn-resolv" type="submit" onclick="checkBtn('<?php echo implode(',', $randomNumbers) ?>' )">SOLVE</button></td>
                     </tr>
                 </tfoot>
             </table>
