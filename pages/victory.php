@@ -15,7 +15,12 @@
     <header>
         <h2>Simon says</h2>
         <a href="../index.html">Home</a>
-        <h3 id="uname"></h3>
+        <h3 id="uname">
+            <?php
+                session_start();
+                echo isset($_SESSION["user"]) ? $_SESSION['user'] : '';
+            ?>
+        </h3>
     </header>
     <p id="title">Victoria</p>
     <div class="box">
