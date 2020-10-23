@@ -20,6 +20,7 @@ p#title {
     color: #0887fa;
     text-align: center;
     width: 100%;
+    animation: 1.25s both titleEffect;
 }
 
 div.box {
@@ -56,4 +57,14 @@ form#form-home {
 
 form#form-next {
     margin: 25px auto auto 25px;
+}
+
+@keyframes titleEffect {
+    From {
+        font-size: 0px;
+    }
+
+    To {
+        font-size: 120px;
+    }
 }
