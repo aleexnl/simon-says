@@ -9,6 +9,7 @@ body {
     display: flex;
     margin: 0;
     background-color: #1b1b1b;
+    flex-flow: column;
 }
 
 .game {
@@ -40,18 +41,20 @@ tbody tr td button {
     background-color: #464646;
 }
 
-tbody tr td button:hover {
+.option:hover {
     opacity: 0.8;
-}
-
-tbody tr td:active {
-    opacity: 0.6;
 }
 
 .container {
     margin: auto;
     display: flex;
     justify-content: center;
+    margin-top: 1%;
+}
+
+.selected {
+    background-color: #2e9cca;
+    cursor: not-allowed;
 }
 
 button#btn-start {
@@ -62,3 +65,4 @@ td.box-btn button {
     width: -webkit-fill-available;
     height: 40px;
 }
+

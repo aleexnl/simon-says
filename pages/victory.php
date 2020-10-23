@@ -7,22 +7,26 @@
     <title>You Win</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/victory.css">
+    <?php session_start();
+    if ($_SESSION['endgame'] == "lose") header("location:gameover.php") ?>
 </head>
 
 <body id="victory">
     <header>
         <h2>Simon says</h2>
-        <a href="../index.html">Home</a>
-        <h3 id="uname"></h3>
+        <div id="home"><a href="../">Home</a></div>
+        <h3 id="uname">
+            <?php echo isset($_SESSION["user"]) ? $_SESSION['user'] : ''; ?>
+        </h3>
     </header>
-    <p id="title">Victoria</p>
+    <p id="title">Victory</p>
     <div class="box">
-        <p id="text">Completaste el nivel X</p>
+        <p id="text">You completed the level X</p>
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" />
         </form>
         <form action="../" method="post" id="form-next">
-            <input type="submit" value="Siguiente" />
+            <input type="submit" value="Next" />
         </form>
     </div>
 </body>
