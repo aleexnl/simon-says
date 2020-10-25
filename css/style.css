@@ -13,7 +13,8 @@ header {
     display: flex;
     width: 100%;
     justify-content: space-between; 
-    position: fixed;
+    position: relative;
+    top: 0;
 }
 
 header > * {
@@ -21,9 +22,12 @@ header > * {
     font-weight: bold;
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
+    width: 33%;
+    text-align: center;
 }
 
-header > a {
+header div a {
     text-decoration: none;
     font-size: 1.17em;
+    color: rgb(255, 255, 255);
 }

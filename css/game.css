@@ -9,6 +9,7 @@ body {
     display: flex;
     margin: 0;
     background-color: #1b1b1b;
+    flex-flow: column;
 }
 
 .game {
@@ -48,6 +49,7 @@ tbody tr td button {
     margin: auto;
     display: flex;
     justify-content: center;
+    margin-top: 1%;
 }
 
 .selected {
@@ -63,3 +65,4 @@ td.box-btn button {
     width: -webkit-fill-available;
     height: 40px;
 }
+

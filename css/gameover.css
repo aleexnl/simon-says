@@ -3,10 +3,16 @@
     src: url("../fonts/VCR_OSD_MONO.ttf");
 }
 
+header {
+    position: fixed !important;
+}
+
 body#victory {
     background-color: black;
     display: flex;
     flex-flow: row wrap;
+    margin: 0;
+    padding: 0 10px;
 }
 
 p#title {
