@@ -10,9 +10,9 @@
     <?php
     $randomCounter = 1;
     $randomNumbers = [];
-    while (count($randomNumbers) != 7) {
+    while (count($randomNumbers) != 7) { // Genreate random numbers until we get 7 unique numbers
         $randomNumber = mt_rand(0, 25);
-        if (!in_array($randomNumber, $randomNumbers)) {
+        if (!in_array($randomNumber, $randomNumbers)) { // If the number is not in the list append it
             array_push($randomNumbers, $randomNumber);
         }
     }
@@ -43,7 +43,6 @@
                 </thead>
                 <tbody>
                     <?php
-                    print_r($randomNumbers);
                     for ($rowCounter = 0; $rowCounter < 5; $rowCounter++) {
                         echo "<tr>";
                         for ($columnounter = 0; $columnounter < 5; $columnounter++) {
