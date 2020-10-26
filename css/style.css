@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #25274d;
+    background-color: #1b1b1b;
     color: rgb(255, 255, 255);
     font-family: "Ubuntu Mono", monospace;
 }
@@ -13,17 +13,21 @@ header {
     display: flex;
     width: 100%;
     justify-content: space-between; 
-    position: relative;
-    top: 0;
+    position: unset;
+    height: 60px;
+}
+
+header > first-child, #home, #uname  {
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
 }
 
 header > * {
     color: white;
     font-weight: bold;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
     width: 33%;
     text-align: center;
+    text-decoration: none;
 }
 
 header div a {
