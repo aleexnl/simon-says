@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--TODO:
+- Deshabilitar boton iniciar partida una vez presionado.
+- Deshabilitar botones hasta que se inicia el juego.
+- Pasar estilos header index.
+- Estilo de botones
+ -->
 
 <head>
     <meta charset="UTF-8">
