@@ -49,12 +49,11 @@ tbody tr td button {
     margin: auto;
     display: flex;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 .selected {
     background-color: #2e9cca;
-    cursor: not-allowed;
 }
 
 button#btn-start {
@@ -65,4 +64,3 @@ td.box-btn button {
     width: -webkit-fill-available;
     height: 40px;
 }
-
