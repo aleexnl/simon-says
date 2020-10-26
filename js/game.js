@@ -34,6 +34,7 @@ for (const button of buttons) {
             button.classList.add("selected"); // Add the option that is selected
         }
     };
+
 }
 
 function redirectPage(endgame) {
