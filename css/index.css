@@ -8,12 +8,12 @@ input[type="submit"] {
     margin: 2%;
 }
 
-.main-title {
-    text-align: center;
-    font-size: 128px;
+#main-title {
+    text-align: center !important;
     font-family: "AmongUsFont", Arial, Helvetica, sans-serif;
     margin: 5% 15% 5px 15%;
 }
+
 .subtitle {
     text-align: center;
     margin: 0 15%;
