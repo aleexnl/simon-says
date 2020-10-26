@@ -10,7 +10,7 @@
     if ($_SESSION['endgame'] == "lose") header("location:gameover.php") ?>
 </head>
 
-<body id="victory">
+<body>
     <header>
         <h2>Simon says</h2>
         <div id="home"><a href="../">Home</a></div>
