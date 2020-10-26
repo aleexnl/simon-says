@@ -10,9 +10,9 @@
     <?php
     $randomCounter = 1;
     $randomNumbers = [];
-    while (count($randomNumbers) != 7) { // Genreate random numbers until we get 7 unique numbers
-        $randomNumber = mt_rand(0, 25);
-        if (!in_array($randomNumber, $randomNumbers)) { // If the number is not in the list append it
+    while (count($randomNumbers) != 7) {
+        $randomNumber = mt_rand(1, 25);
+        if (!in_array($randomNumber, $randomNumbers)) {
             array_push($randomNumbers, $randomNumber);
         }
     }
@@ -47,9 +47,9 @@
                         echo "<tr>";
                         for ($columnounter = 0; $columnounter < 5; $columnounter++) {
                             if (in_array($randomCounter++, $randomNumbers)) {
-                                echo "<td><button type='submit' class='option random'></button></td>";
+                                echo "<td><button type='submit' class='square option solution'></button></td>";
                             } else {
-                                echo "<td><button type='submit' class='option' name='btn-option'></button></td>";
+                                echo "<td><button type='submit' class='square option'></button></td>";
                             }
                         }
                         echo "</tr>";
@@ -60,7 +60,7 @@
                     <tr>
                         <td class="box-btn"><button id="btn-start" type="submit">START GAME</button></td>
                         <td colspan="3"></td>
-                        <td class="box-btn"><button id="btn-resolv" type="submit" onclick="checkBtn('<?php echo implode(',', $randomNumbers) ?>' )">SOLVE</button></td>
+                        <td class="box-btn"><button id="btn-resolve" type="submit">SOLVE</button></td>
                     </tr>
                 </tfoot>
             </table>

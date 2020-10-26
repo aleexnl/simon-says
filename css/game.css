@@ -54,7 +54,6 @@ tbody tr td button {
 
 .selected {
     background-color: #2e9cca;
-    cursor: not-allowed;
 }
 
 button#btn-start {
@@ -65,4 +64,3 @@ td.box-btn button {
     width: -webkit-fill-available;
     height: 40px;
 }
-
