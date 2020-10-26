@@ -47,7 +47,7 @@
                         echo "<tr>";
                         for ($columnounter = 0; $columnounter < 5; $columnounter++) {
                             if (in_array($randomCounter++, $randomNumbers)) {
-                                echo "<td><button type='submit' class='square option solution selected'></button></td>";
+                                echo "<td><button type='submit' class='square option solution'></button></td>";
                             } else {
                                 echo "<td><button type='submit' class='square option'></button></td>";
                             }
