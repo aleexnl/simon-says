@@ -1,29 +1,31 @@
-buttons = document.getElementsByClassName("option"); // Get all buttons
+let squares = document.getElementsByClassName("square");
+let buttons = document.getElementsByClassName("option"); // Get all buttons
+let solutions = document.getElementsByClassName("solution");
+let resolve_button = document.getElementById("btn-resolve");
 
-for (const buton of buttons) {
-    // For each button ad an onclick() event listener
-    buton.onclick = function () {
-        buton.setAttribute("disabled", true); // Disable the button
-        buton.classList.remove("option"); // Remove the class option
-        buton.classList.add("selected"); // Add the option that is selected
-    };
-}
+// console.log(solutions);
 
-function checkBtn(strRightPosition) {
-    let btnSelected = document.getElementsByName("btn-option");
-    let positions = strRightPosition.split(",");
-    if (document.getElementsByClassName("selected").length == 7) {
-        let allCorrect = true;
-        for (let i = 0; i < positions.length; i++) {
-            if (btnSelected[positions[i] - 1].className == "option") {
-                allCorrect = false;
-                break;
-            }
+resolve_button.onclick = function (solutions) {
+    let btnSelected = document.getElementsByClassName("selected");
+    if (btnSelected.length == 7) {
+        for (const button of btnSelected) {
+            console.log(solutions.indexOf(button));
+            /*if (solutions.indexOf(button) == -1) {
+                redirectPage("lose");
+            }*/
         }
-        if (allCorrect) redirectPage("win");
-        else redirectPage("lose");
+        //redirectPage("win");
     } else redirectPage("lose");
+};
 
+for (const button of buttons) {
+    // For each button ad an onclick() event listener
+    button.onclick = function () {
+        button.setAttribute("disabled", true); // Disable the button
+        button.classList.remove("option"); // Remove the class option
+        button.classList.add("selected"); // Add the option that is selected
+        console.log(squares);
+    };
 }
 
 function redirectPage(endgame) {
