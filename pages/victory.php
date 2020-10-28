@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <h2>Simon says</h2>
+        <h3><a href="../index.php" id="webTitle">Simon says</a></h3>
         <div id="home"><a href="../">Home</a></div>
         <h3 id="uname">
             <?php echo isset($_SESSION["user"]) ? $_SESSION['user'] : ''; ?>
