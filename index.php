@@ -7,9 +7,9 @@
     </head>
     <body>
         <header>
-            <a href="#"><h2>Simon says</h2></a>
+            <h3><a href="#" id="webTitle">Simon says</a></h3>
             <div id="home"><a href="#">Home</a></div>
-            <h3 id="uname"></h3>
+            <h3><a href="./pages/ranking.php" id="ranking">Ranking</a></h3>
         </header>
         <div id="main-title">
             <img src="./img/Title.png" >

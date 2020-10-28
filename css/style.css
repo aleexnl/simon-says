@@ -22,7 +22,7 @@ header > first-child, #home, #uname  {
     margin-block-end: 0.83em;
 }
 
-header > * {
+header > * > * {
     color: white;
     font-weight: bold;
     width: 33%;
