@@ -17,8 +17,9 @@ start_button.onclick = function () {
 };
 
 resolve_button.onclick = function () {
-    let btnSelected = document.getElementsByClassName("selected solution");
-    if (btnSelected.length == 7) {
+    let solution = document.getElementsByClassName("selected solution");
+    let selectedButtons = document.getElementsByClassName("selected");
+    if (solution.length == 7 && selectedButtons.length == 7) {
         redirectPage("win");
     } else {
         redirectPage("lose");
@@ -34,7 +35,6 @@ for (const button of buttons) {
             button.classList.add("selected"); // Add the option that is selected
         }
     };
-
 }
 
 function redirectPage(endgame) {
