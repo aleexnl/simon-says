@@ -10,19 +10,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego</title>
+    <title><?= $_SESSION["actual_level"][0] ?> Level</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
     <?php
+    session_start();
+    $grid = explode('x', $_SESSION['actual_level'][1]);
+    $grid_total = $grid[0] * $grid[1];
     $randomCounter = 1;
     $randomNumbers = [];
-    while (count($randomNumbers) != 7) {
-        $randomNumber = mt_rand(1, 25);
+    while (count($randomNumbers) != $_SESSION['actual_level'][2]) {
+        $randomNumber = mt_rand(1, $grid_total);
         if (!in_array($randomNumber, $randomNumbers)) {
             array_push($randomNumbers, $randomNumber);
         }
     }
     ?>
+
+
 </head>
 
 <body>
@@ -31,7 +36,6 @@
         <div id="home"><a href="../">Home</a></div>
         <h3 id="uname">
             <?php
-            session_start();
             $_SESSION["user"] = isset($_GET["uname"]) ? $_GET["uname"] : '';
             echo isset($_SESSION["user"]) ? $_SESSION['user'] : '';
             ?>
@@ -43,15 +47,15 @@
                 <thead>
                     <tr>
                         <td colspan="5">
-                            <h1>Level1</h1>
+                            <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
                         </td>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    for ($rowCounter = 0; $rowCounter < 5; $rowCounter++) {
+                    for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
                         echo "<tr>";
-                        for ($columnounter = 0; $columnounter < 5; $columnounter++) {
+                        for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
                             if (in_array($randomCounter++, $randomNumbers)) {
                                 echo "<td><button type='submit' class='square option solution'></button></td>";
                             } else {

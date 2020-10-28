@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
     </header>
     <p id="title">Victory</p>
     <div class="box">
-        <p id="text">You completed the level X</p>
+        <p id="text">You completed the <?= $_SESSION["actual_level"][0] ?> level.</p>
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" />
         </form>
