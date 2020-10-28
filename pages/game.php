@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego</title>
+    <title><?= $_SESSION["actual_level"][0] ?> Level</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
     <?php
@@ -47,7 +47,7 @@
                 <thead>
                     <tr>
                         <td colspan="5">
-                            <h1>Level1</h1>
+                            <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
                         </td>
                     </tr>
                 </thead>
