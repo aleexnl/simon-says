@@ -15,10 +15,10 @@
 
 <body>
     <header>
-        <a href=".">
+        <a href="." accesskey="H">
             <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
-        <a href="./ranking.php">
+        <a href="./ranking.php" accesskey="T">
             <h2><i class="fas fa-medal"></i>RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
@@ -27,13 +27,13 @@
     <div class="box">
         <p id="text">You completed the <?= $_SESSION["actual_level"][0] ?> level.</p>
         <form action="../" method="post" id="form-home">
-            <input type="submit" value="Home" />
+            <input type="submit" value="Home" accesskey="H" />
         </form>
         <form action="game.php" method="post" id="form-try-again">
-            <input type="submit" value="Try Again" />
+            <input type="submit" value="Try Again" accesskey="R" />
         </form>
         <form action="./game.php" method="post" id="form-next">
-            <input type="submit" value="Next" name="next-level" />
+            <input type="submit" value="Next" name="next-level" accesskey="N" />
         </form>
     </div>
     <footer>
