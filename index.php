@@ -25,7 +25,7 @@ if (!isset($_SESSION["actual_level"])) {
     <h2 class="subtitle">Welcome to our site! Here you can enjoy the Simon says game online! Insert you user name and press the start game button to begin!</h2>
     <form id="form" action="pages/game.php" method="GET">
         <label for="uname"><b>USERNAME:</b></label>
-        <input type="text" placeholder="Neo" name="uname" value="<?= isset($_SESSION['user']) ? $_SESSION['user'] : ''; ?>" required><br>
+        <input type="text" placeholder="Es el rosa" name="uname" value="<?= isset($_SESSION['user']) ? $_SESSION['user'] : ''; ?>" required><br>
         <input type="submit" value="Start game" href="index.html"></input>
     </form>
 </body>
