@@ -54,6 +54,8 @@
     </header>
     <div class="container">
         <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
+        <button id="btn-start" type="submit" accesskey="P">START GAME</button>
+        <button id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
         <div class="game">
             <table>
                 <tbody>
@@ -71,13 +73,6 @@
                     }
                     ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td class="box-btn"><button id="btn-start" type="submit" accesskey="P">START GAME</button></td>
-                        <td colspan="3"></td>
-                        <td class="box-btn"><button id="btn-resolve" type="submit" accesskey="S">SOLVE</button></td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

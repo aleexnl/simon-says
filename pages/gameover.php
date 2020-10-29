@@ -35,6 +35,9 @@
             <input type="submit" value="Try again" accesskey="R" />
         </form>
     </div>
+    <footer>
+        <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
+    </footer>
 </body>
 
 </html>

@@ -8,7 +8,6 @@ header {
 }
 
 body {
-    background-color: #1b1b1b;
     display: flex;
     flex-flow: row wrap;
     margin: 0;
@@ -82,11 +81,11 @@ p.level-code {
 }
 
 @keyframes titleEffect {
-    From {
+    from {
         font-size: 0px;
     }
 
-    To {
+    to {
         font-size: 120px;
     }
 }
