@@ -7,17 +7,20 @@
     <title>Ranking</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/ranking.css">
+    <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php /*** AQUÍ QUE LEER EL ARCHIVO DEL RANKING ***/ ?>
     <?php /*** AQUÍ ORDENAR EL ARRAY DEL RANKING ***/ ?>
 </head>
 
 <body>
     <header>
-        <h2>Simon says</h2>
-        <div id="home"><a href="../">Home</a></div>
-        <h3 id="uname">
-            <?php echo isset($_SESSION["user"]) ? $_SESSION['user'] : ''; ?>
-        </h3>
+        <a href="../">
+            <h2><i class="fas fa-home"></i> HOME</h2>
+        </a>
+        <a href="./ranking.php">
+            <h2><i class="fas fa-medal"></i>RANKING</h2>
+        </a>
+        <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
     <h1 class="title">Ranking</h1>
     <table cellspacing="0" cellpadding="0">
