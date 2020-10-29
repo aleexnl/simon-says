@@ -7,6 +7,7 @@
     <title>You Win</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/victory.css">
+    <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php session_start();
     require_once('../functions.php');
     if ($_SESSION['endgame'] == "lose") header("location:gameover.php") ?>
@@ -14,11 +15,13 @@
 
 <body>
     <header>
-        <h3><a href="../index.php" id="webTitle">Simon says</a></h3>
-        <div id="home"><a href="../">Home</a></div>
-        <h3 id="uname">
-            <?php echo isset($_SESSION["user"]) ? $_SESSION['user'] : ''; ?>
-        </h3>
+        <a href=".">
+            <h2><i class="fas fa-home"></i> HOME</h2>
+        </a>
+        <a href="./ranking.php">
+            <h2><i class="fas fa-medal"></i>RANKING</h2>
+        </a>
+        <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
     <p id="title">Victory</p>
     <div class="box">
@@ -29,8 +32,8 @@
         <form action="game.php" method="post" id="form-try-again">
             <input type="submit" value="Try Again" />
         </form>
-        <form action="#level-up" method="post" id="form-next">
-            <input type="submit" value="Next" onclick="<?php levelUp() ?>" />
+        <form action="./game.php" method="post" id="form-next">
+            <input type="submit" value="Next" name="next-level" />
         </form>
     </div>
     <footer>
