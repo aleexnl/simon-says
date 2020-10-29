@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once('../functions.php');
 
 if (isset($_GET['result'])) {
     $_SESSION['punctuation'] = 200;
