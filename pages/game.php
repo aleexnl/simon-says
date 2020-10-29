@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="../css/game.css">
     <?php
     session_start();
+    require_once(__DIR__ . "/../functions.php");
+    if (isset($_SESSION['user']) && isset($_GET["uname"])) {
+        if ($_SESSION['user'] != $_GET["uname"]) {
+            $_SESSION["actual_level"] = get_level(0);
+        }
+    }
     $grid = explode('x', $_SESSION['actual_level'][1]);
     $grid_total = $grid[0] * $grid[1];
     $randomCounter = 1;
@@ -26,8 +32,6 @@
         }
     }
     ?>
-
-
 </head>
 
 <body>
