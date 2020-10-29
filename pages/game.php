@@ -13,13 +13,19 @@
     <title><?= $_SESSION["actual_level"][0] ?> Level</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
+    <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php
     session_start();
     require_once(__DIR__ . "/../functions.php");
+
     if (isset($_SESSION['user']) && isset($_GET["uname"])) {
         if ($_SESSION['user'] != $_GET["uname"]) {
+            $_SESSION['user'] = $_GET["uname"];
             $_SESSION["actual_level"] = get_level(0);
         }
+    }
+    if (isset($_SESSION) && isset($_POST['next-level'])) {
+        $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5] + 1);
     }
     $grid = explode('x', $_SESSION['actual_level'][1]);
     $grid_total = $grid[0] * $grid[1];
@@ -36,14 +42,13 @@
 
 <body>
     <header>
-        <h3><a href="../index.php" id="webTitle">Simon says</a></h3>
-        <div id="home"><a href="../">Home</a></div>
-        <h3 id="uname">
-            <?php
-            $_SESSION["user"] = isset($_GET["uname"]) ? $_GET["uname"] : '';
-            echo isset($_SESSION["user"]) ? $_SESSION['user'] : '';
-            ?>
-        </h3>
+        <a href="../">
+            <h2><i class="fas fa-home"></i> HOME</h2>
+        </a>
+        <a href="./ranking.php">
+            <h2><i class="fas fa-medal"></i>RANKING</h2>
+        </a>
+        <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
     <div class="container">
         <div class="game">
