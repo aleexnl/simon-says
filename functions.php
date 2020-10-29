@@ -7,6 +7,10 @@ function get_level($level_number)
     return $level;
 }
 
+function levelUp() {
+    header("location:./");
+}
+
 function getUserDetails()
 {
     return $_SESSION['user'] . ";" . $_SESSION['punctuation'];

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/victory.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php session_start();
+    require_once('../functions.php');
     if ($_SESSION['endgame'] == "lose") header("location:gameover.php") ?>
 </head>
 
@@ -28,10 +29,16 @@
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" />
         </form>
+        <form action="game.php" method="post" id="form-try-again">
+            <input type="submit" value="Try Again" />
+        </form>
         <form action="./game.php" method="post" id="form-next">
             <input type="submit" value="Next" name="next-level" />
         </form>
     </div>
+    <footer>
+        <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
+    </footer>
 </body>
 
 </html>
