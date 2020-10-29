@@ -17,7 +17,9 @@
     <?php
     session_start();
     require_once(__DIR__ . "/../functions.php");
-
+    if (!isset($_SESSION['user']) && isset($_GET["uname"])) {
+        $_SESSION['user'] = $_GET["uname"];
+    }
     if (isset($_SESSION['user']) && isset($_GET["uname"])) {
         if ($_SESSION['user'] != $_GET["uname"]) {
             $_SESSION['user'] = $_GET["uname"];
@@ -42,24 +44,18 @@
 
 <body>
     <header>
-        <a href="../">
+        <a href="../" accesskey="h">
             <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
-        <a href="./ranking.php">
+        <a href="./ranking.php" accesskey="T">
             <h2><i class="fas fa-medal"></i>RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
     <div class="container">
+        <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
         <div class="game">
             <table>
-                <thead>
-                    <tr>
-                        <td colspan="5">
-                            <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
-                        </td>
-                    </tr>
-                </thead>
                 <tbody>
                     <?php
                     for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
@@ -77,9 +73,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td class="box-btn"><button id="btn-start" type="submit">START GAME</button></td>
+                        <td class="box-btn"><button id="btn-start" type="submit" accesskey="P">START GAME</button></td>
                         <td colspan="3"></td>
-                        <td class="box-btn"><button id="btn-resolve" type="submit">SOLVE</button></td>
+                        <td class="box-btn"><button id="btn-resolve" type="submit" accesskey="S">SOLVE</button></td>
                     </tr>
                 </tfoot>
             </table>
