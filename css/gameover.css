@@ -8,7 +8,6 @@ header {
 }
 
 body {
-    background-color: #1b1b1b;
     display: flex;
     flex-flow: row wrap;
     margin: 0;
@@ -64,12 +63,24 @@ form#form-retry {
     margin: 25px auto auto 25px;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+p.level-code {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 2%;
+}
 @keyframes titleEffect {
-    From {
+    from {
         font-size: 0px;
     }
 
-    To {
+    to {
         font-size: 120px;
     }
 }

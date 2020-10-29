@@ -16,10 +16,10 @@ if (!isset($_SESSION["actual_level"])) {
 
 <body>
     <header>
-        <a href=".">
+        <a href="." accesskey="H">
             <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
-        <a href="./pages/ranking.php">
+        <a href="./pages/ranking.php" accesskey="T">
             <h2><i class="fas fa-medal"></i>RANKING</h2>
         </a>
     </header>
@@ -48,7 +48,7 @@ if (!isset($_SESSION["actual_level"])) {
             </label>
             <input class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $_SESSION['user'] ?>" required>
             <br>
-            <button type="submit" value="Start game" href="index.html"><i class="fas fa-play"></i> PLAY</button>
+            <button type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
         </form>
     </div>
 </body>
