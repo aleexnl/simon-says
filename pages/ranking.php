@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/ranking.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <?php session_start() ?>
     <?php /*** AQUÍ QUE LEER EL ARCHIVO DEL RANKING ***/ ?>
     <?php /*** AQUÍ ORDENAR EL ARRAY DEL RANKING ***/ ?>
 </head>
