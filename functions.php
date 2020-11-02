@@ -7,16 +7,26 @@ function get_level($level_number)
     return $level;
 }
 
-function levelUp() {
-    header("location:./");
-}
-
-function getUserDetails()
+function levelUp()
 {
-    return $_SESSION['user'] . ";" . $_SESSION['punctuation'];
+    header("location:./");
 }
 
 function writeInRankingFile($userStr)
 {
     file_put_contents('../ranking.cfg', $userStr . PHP_EOL, FILE_APPEND | LOCK_EX);
+}
+
+function reedRankingFile()
+{
+    $users = [];
+    $rankingFile = fopen(__DIR__ . "/ranking.cfg", "r") or die("Unable to open file!");
+    while (!feof($rankingFile)) {
+        $line = fgets($rankingFile);
+        if ($line != "") {
+            list($user, $punctuation) = explode(";", $line);
+            array_push($users, array("user" => $user, "punctuation" => intval($punctuation)));
+        }
+    }
+    return $users;
 }
