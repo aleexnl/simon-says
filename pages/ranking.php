@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="../css/ranking.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php session_start() ?>
-    <?php /*** AQUÍ QUE LEER EL ARCHIVO DEL RANKING ***/ ?>
-    <?php /*** AQUÍ ORDENAR EL ARRAY DEL RANKING ***/ ?>
+    <?php require_once("../functions.php"); ?>
+    <?php $users = reedRankingFile(); ?>
+    <?php
+    usort($users, function ($item1, $item2) {
+        return $item2['punctuation'] <=> $item1['punctuation'];
+    });
+    ?>
 </head>
 
 <body>
@@ -36,38 +41,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <p class="username">Alex</p>
-                </td>
-                <td>
-                    <p class="points">1700</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="username">Jesus</p>
-                </td>
-                <td>
-                    <p class="points">1500</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="username">Carlos</p>
-                </td>
-                <td>
-                    <p class="points">1200</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="username">David</p>
-                </td>
-                <td>
-                    <p class="points">1000</p>
-                </td>
-            </tr>
+            <?php
+            foreach ($users as $user) {
+                echo "<tr>";
+                echo "<td>";
+                echo "<p class='username'>" . $user['user'] . "</p>";
+                echo "</td>";
+                echo "<td>";
+                echo "<p class='points'>" . $user['punctuation'] . "</p>";
+                echo "</td>";
+                echo "</tr>";
+            }
+            ?>
         </tbody>
     </table>
 </body>
