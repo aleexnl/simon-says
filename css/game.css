@@ -32,7 +32,7 @@ tbody tr td button {
     font-weight: bold;
     font-family: AmongUsFont;
     text-align: center;
-    margin: 1rem 0 0 0;
+    margin: 1rem 0 -1rem 0;
 }
 #btn-start,
 #btn-resolve {
