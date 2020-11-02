@@ -2,6 +2,7 @@ let buttons = document.getElementsByClassName("option"); // Get all buttons.
 let resolve_button = document.getElementById("btn-resolve"); // get resolve button.
 let start_button = document.getElementById("btn-start");
 let correctButtons = document.getElementById("correct-squares"); // get the number of correct squares.
+let showTime = document.getElementById("show-time");
 let tiempo = 0; // Time variable
 
 function redirectPage(endgame) {
@@ -48,7 +49,7 @@ start_button.onclick = function () {
         hideSolutions(solutions); // hide solutions
         resolve_button.removeAttribute("disabled"); // Enable resolve button
         start_button.setAttribute("disabled", true); // Disable start button
-    }, 4000);
+    }, showTime.innerText * 1000);
 };
 
 resolve_button.onclick = function () {
