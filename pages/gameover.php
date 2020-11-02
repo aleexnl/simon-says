@@ -27,7 +27,6 @@
     <p id="title">Game Over</p>
     <div class="box">
         <p id="text">You didn't pass the <?= $_SESSION["actual_level"][0] ?> level</p>
-        <p id="text"><small>Level code: <code><?= $_SESSION["actual_level"][4] ?></code></small></p>
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" accesskey="H" />
         </form>
