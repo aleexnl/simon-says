@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--TODO:
-- Deshabilitar boton iniciar partida una vez presionado.
-- Deshabilitar botones hasta que se inicia el juego.
-- Pasar estilos header index.
-- Estilo de botones
- -->
 
 <head>
     <meta charset="UTF-8">
@@ -61,6 +55,7 @@
         <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
             <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
             <h2>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h2>
+            <h3>You have <span id="show-time">4</span> to memorize the squares.</h3>
             <button id="btn-start" type="submit" accesskey="P">START GAME</button>
             <button id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
             <div class="game">

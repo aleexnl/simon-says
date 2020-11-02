@@ -24,11 +24,9 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
             <h2><i class="fas fa-medal"></i> RANKING</h2>
         </a>
     </header>
-    <div class="content">
-        <div class="image">
-            <img src="./img/Title.png" alt="Simon Says Title">
-        </div>
-        <h1>Welcome to Simon says, the web version!</h1>
+    <div class="container">
+        <img src="./img/Title.png" alt="Simon Says Title">
+        <h2>Welcome to Simon says, the web version!</h2>
         <div class="instructions">
             <h2>INSTRUCTIONS</h2>
             <h3>In order to win, you have to select all the correct squares</h3>
@@ -45,7 +43,7 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 
         <form id="form" action="pages/game.php" method="GET">
             <label for="uname">
-                <h1>USERNAME</h1>
+                <h2>USERNAME</h2>
             </label>
             <input class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required>
             <br>
