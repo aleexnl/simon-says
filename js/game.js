@@ -1,54 +1,63 @@
-let buttons = document.getElementsByClassName("option"); // Get all buttons
-let resolve_button = document.getElementById("btn-resolve");
+let buttons = document.getElementsByClassName("option"); // Get all buttons.
+let resolve_button = document.getElementById("btn-resolve"); // get resolve button.
 let start_button = document.getElementById("btn-start");
-let tiempo = 0;
+let correctButtons = document.getElementById("correct-squares"); // get the number of correct squares.
+let tiempo = 0; // Time variable
 
 function redirectPage(endgame) {
+    // Reriderct to the corresponding result page.
     window.location.href = "./result.php?result=" + endgame;
 }
 
 function temporizador() {
+    // Timer for every second.
     setInterval(() => {
         tiempo++;
-        console.log(tiempo);
     }, 1000);
 }
 
 function enableButtons(buttons) {
+    // Enable all buttons from the gameboard.
     for (const button of buttons) {
         button.removeAttribute("disabled");
     }
 }
 
 function showSolutions(buttons) {
+    // Show all the solutions.
     for (const button of buttons) {
         button.classList.add("selected");
     }
 }
 
 function hideSolutions(buttons) {
+    // Hide all solutions.
     for (const button of buttons) {
         button.classList.remove("selected");
     }
 }
 
-start_button.onclick = async function () {
-    let solutions = document.getElementsByClassName("solution");
-    showSolutions(solutions);
-    resolve_button.setAttribute("disabled", true);
+start_button.onclick = function () {
+    let solutions = document.getElementsByClassName("solution"); // Get all solutions
+    showSolutions(solutions); // Show solutions
+    resolve_button.setAttribute("disabled", true); // Disable resolve button
     setTimeout(() => {
-        temporizador();
-        enableButtons(buttons);
-        hideSolutions(solutions);
-        resolve_button.removeAttribute("disabled");
-        start_button.setAttribute("disabled", true);
+        // After 4 seconds
+        temporizador(); // enable timer
+        enableButtons(buttons); // enable buttons
+        hideSolutions(solutions); // hide solutions
+        resolve_button.removeAttribute("disabled"); // Enable resolve button
+        start_button.setAttribute("disabled", true); // Disable start button
     }, 4000);
 };
 
 resolve_button.onclick = function () {
     let solution = document.getElementsByClassName("selected solution");
     let selectedButtons = document.getElementsByClassName("selected");
-    if (solution.length == 7 && selectedButtons.length == 7) {
+    if (
+        solution.length == correctButtons.innerText &&
+        selectedButtons.length == correctButtons.innerText
+    ) {
         redirectPage("win");
     } else {
         redirectPage("lose");
