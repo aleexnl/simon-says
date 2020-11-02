@@ -1,21 +1,39 @@
-#form {
+form {
     align-content: center;
     text-align: center;
     padding: 2%;
 }
 
-input[type="submit"] {
-    margin: 2%;
+.content {
+    vertical-align: middle;
 }
-
-#main-title {
-    text-align: center !important;
-    font-family: "AmongUsFont", Arial, Helvetica, sans-serif;
-    margin: 5% 15% 5px 15%;
-}
-
-.subtitle {
+.image {
     text-align: center;
-    margin: 0 15%;
-    font-family: "Ubuntu Mono", monospace;
+}
+.image img {
+    width: 50%;
+    margin-top: 5rem;
+}
+.instructions {
+    list-style-position: inside;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 1rem;
+    text-align: center;
+}
+form button {
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+}
+form button:hover {
+    cursor: pointer;
+}
+form input {
+    margin: -0.5rem 0 1rem 0;
+    padding: 1rem;
+    font-size: 1.25rem;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
 }

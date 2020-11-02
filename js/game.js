@@ -1,6 +1,7 @@
 let buttons = document.getElementsByClassName("option"); // Get all buttons
 let resolve_button = document.getElementById("btn-resolve");
 let start_button = document.getElementById("btn-start");
+let tiempo = 0;
 
 start_button.onclick = async function () {
     let solutions = document.getElementsByClassName("solution");
@@ -10,11 +11,14 @@ start_button.onclick = async function () {
     }
     console.log(2);
     resolve_button.setAttribute("disabled", true);
-    await setTimeout(async () => {
-        for await (const solution of solutions) {
+    setTimeout(() => {
+        temporizador();
+        enableButtons(buttons);
+        for (const solution of solutions) {
             solution.classList.remove("selected");
         }
         resolve_button.removeAttribute("disabled");
+        start_button.setAttribute("disabled", true);
     }, 4000);
     console.log(3);
     UserTimer();
@@ -56,4 +60,16 @@ for (const button of buttons) {
 
 function redirectPage(endgame) {
     window.location.href = "./result.php?result=" + endgame;
+}
+function temporizador() {
+    setInterval(() => {
+        tiempo++;
+        console.log(tiempo);
+    }, 1000);
+}
+
+function enableButtons(buttons) {
+    for (const button of buttons) {
+        button.removeAttribute("disabled");
+    }
 }
