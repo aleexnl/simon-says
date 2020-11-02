@@ -12,11 +12,12 @@ form {
 }
 .image img {
     width: 50%;
-    margin-top: 5rem;
+    margin-top: 1.5rem;
 }
 .instructions {
     list-style-position: inside;
     text-align: center;
+    margin-top: 2.5rem;
 }
 
 h1 {

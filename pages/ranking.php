@@ -24,7 +24,7 @@
             <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
-            <h2><i class="fas fa-medal"></i>RANKING</h2>
+            <h2><i class="fas fa-medal"></i> RANKING</h2>
         </a>
         <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
             <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>

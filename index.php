@@ -20,15 +20,15 @@ if (!isset($_SESSION["actual_level"])) {
             <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./pages/ranking.php" accesskey="T">
-            <h2><i class="fas fa-medal"></i>RANKING</h2>
+            <h2><i class="fas fa-medal"></i> RANKING</h2>
         </a>
     </header>
     <div class="content">
         <div class="image">
             <img src="./img/Title.png" alt="Simon Says Title">
         </div>
+        <h1>Welcome to Simon says, the web version!</h1>
         <div class="instructions">
-            <h1>Welcome to Simon says, the web version!</h1>
             <h2>INSTRUCTIONS</h2>
             <h3>In order to win, you have to select all the correct squares</h3>
             <ol>

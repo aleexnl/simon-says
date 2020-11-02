@@ -3,10 +3,8 @@ div.container-ranking {
 }
 
 h1.title {
-    color: white;
     font-size: 80px;
     font-weight: bold;
-    font-family: AmongUsFont;
     text-align: center;
     width: 100%;
     margin: 1rem 0;
@@ -15,7 +13,6 @@ h1.title {
 table {
     box-shadow: 0 0 10px black;
     border-radius: 10px;
-    color: #d1d1d1;
     margin: auto;
     background-color: #0c1e28;
 }
