@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--TODO:
-- Deshabilitar boton iniciar partida una vez presionado.
-- Deshabilitar botones hasta que se inicia el juego.
-- Pasar estilos header index.
-- Estilo de botones
- -->
 
 <head>
     <meta charset="UTF-8">
@@ -27,6 +21,7 @@
         }
     }
     if (isset($_SESSION) && isset($_POST['next-level'])) {
+        
         $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5] + 1);
     }
     $grid = explode('x', $_SESSION['actual_level'][1]);
@@ -44,6 +39,7 @@
 
 <body>
     <header>
+        <?php print_r($_SESSION["actual_level"]);?>
         <a href="../" accesskey="h">
             <h2><i class="fas fa-home"></i> HOME</h2>
         </a>

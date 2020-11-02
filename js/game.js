@@ -1,18 +1,17 @@
 let buttons = document.getElementsByClassName("option"); // Get all buttons
 let resolve_button = document.getElementById("btn-resolve");
 let start_button = document.getElementById("btn-start");
-let tiempo = 0;
+let time = 0;
+let intervalTimer = "";
 
-start_button.onclick = async function () {
+start_button.onclick = function () {
     let solutions = document.getElementsByClassName("solution");
-    for await (const solution of solutions) {
+    for (const solution of solutions) {
         solution.classList.add("selected");
-        console.log(1);
     }
-    console.log(2);
     resolve_button.setAttribute("disabled", true);
     setTimeout(() => {
-        temporizador();
+        timer();
         enableButtons(buttons);
         for (const solution of solutions) {
             solution.classList.remove("selected");
@@ -20,30 +19,17 @@ start_button.onclick = async function () {
         resolve_button.removeAttribute("disabled");
         start_button.setAttribute("disabled", true);
     }, 4000);
-    console.log(3);
-    UserTimer();
-}; 
-
-let timer = 0;
-async function UserTimer() {
-    let timerCounter = true;
-    while (timerCounter == true) {
-        setInterval(async () => timer++, 1000);
-        console.log(timer);
-        if (timer == 5) {
-            timerCounter = false;
-        }
-    }
-}
-
+};
 
 resolve_button.onclick = function () {
     let solution = document.getElementsByClassName("selected solution");
     let selectedButtons = document.getElementsByClassName("selected");
+    clearInterval(intervalTimer)
+
     if (solution.length == 7 && selectedButtons.length == 7) {
-        redirectPage("win");
+        redirectPage("win",time);
     } else {
-        redirectPage("lose");
+        redirectPage("lose", time);
     }
 };
 
@@ -58,13 +44,13 @@ for (const button of buttons) {
     };
 }
 
-function redirectPage(endgame) {
-    window.location.href = "./result.php?result=" + endgame;
+function redirectPage(endgame, time) {
+    window.location.href = "./result.php?result=" + endgame + "&userTime=" + time;
 }
-function temporizador() {
-    setInterval(() => {
-        tiempo++;
-        console.log(tiempo);
+function timer() {
+    intervalTimer = setInterval(() => {
+        time++;
+        console.log(time);
     }, 1000);
 }
 

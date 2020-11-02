@@ -29,11 +29,14 @@
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" accesskey="H" />
         </form>
-        <form action="game.php" method="post" id="form-try-again">
-            <input type="submit" value="Try Again" accesskey="R" />
+        <form action="../functions.php" method="post" id="form-try-again">
+            <input type="submit" name="try-again" value="Try Again" accesskey="R" />
         </form>
-        <form action="./game.php" method="post" id="form-next">
-            <input type="submit" value="Next" name="next-level" accesskey="N" />
+        <form action="../functions.php" method="post" id="form-next">
+            <input type="submit" name="next-level" value="Next" name="next-level" accesskey="N" />
+        </form>
+        <form action="../functions.php" method="post" id="form-retry">
+            <input type="submit" name="save" value="Save points" accesskey="S" />
         </form>
     </div>
     <footer>
