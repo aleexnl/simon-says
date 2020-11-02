@@ -52,7 +52,8 @@ if (isset($_POST["save"])) {
 if (isset($_POST["next-level"])) {
     session_start();
     $_SESSION["points"] += $_SESSION["lvlPoints"];
-    $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5]++);
+    $_SESSION["actual_level"][5]++;
+    $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5]);
     header("location:pages/game.php");
 }
 if (isset($_POST["try-again"])) {
