@@ -17,16 +17,16 @@
     <?php
     session_start();
     require_once(__DIR__ . "/../functions.php");
-    if (!isset($_SESSION['user']) && isset($_GET["uname"])) {
+    if (!isset($_SESSION['user'], $_GET["uname"])) {
         $_SESSION['user'] = $_GET["uname"];
     }
-    if (isset($_SESSION['user']) && isset($_GET["uname"])) {
+    if (isset($_SESSION['user'], $_GET["uname"])) {
         if ($_SESSION['user'] != $_GET["uname"]) {
             $_SESSION['user'] = $_GET["uname"];
             $_SESSION["actual_level"] = get_level(0);
         }
     }
-    if (isset($_SESSION) && isset($_POST['next-level'])) {
+    if (isset($_SESSION, $_POST['next-level'])) {
         $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5] + 1);
     }
     $grid = explode('x', $_SESSION['actual_level'][1]);
@@ -48,33 +48,39 @@
             <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
-            <h2><i class="fas fa-medal"></i>RANKING</h2>
+            <h2><i class="fas fa-medal"></i> RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
+
     <div class="container">
-        <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
-        <button id="btn-start" type="submit" accesskey="P">START GAME</button>
-        <button id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
-        <div class="game">
-            <table>
-                <tbody>
-                    <?php
-                    for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
-                        echo "<tr>";
-                        for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
-                            if (in_array($randomCounter++, $randomNumbers)) {
-                                echo "<td><button type='submit' class='square option solution'></button></td>";
-                            } else {
-                                echo "<td><button type='submit' class='square option'></button></td>";
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
+            <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
+            <button id="btn-start" type="submit" accesskey="P">START GAME</button>
+            <button id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
+            <div class="game">
+                <table>
+                    <tbody>
+                        <?php
+                        for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
+                            echo "<tr>";
+                            for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
+                                if (in_array($randomCounter++, $randomNumbers)) {
+                                    echo "<td><button type='submit' class='square option solution' disabled></button></td>";
+                                } else {
+                                    echo "<td><button type='submit' class='square option' disabled></button></td>";
+                                }
                             }
+                            echo "</tr>";
                         }
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else : ?>
+            <h1>ERROR</h1>
+            <p>Please, enter a valid username before accesing to the game!</p>
+        <?php endif ?>
     </div>
     <script src="../js/game.js"></script>
 </body>

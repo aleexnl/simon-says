@@ -1,18 +1,47 @@
 let buttons = document.getElementsByClassName("option"); // Get all buttons
 let resolve_button = document.getElementById("btn-resolve");
 let start_button = document.getElementById("btn-start");
+let tiempo = 0;
 
-start_button.onclick = function () {
-    let solutions = document.getElementsByClassName("solution");
-    for (const solution of solutions) {
-        solution.classList.add("selected");
+function redirectPage(endgame) {
+    window.location.href = "./result.php?result=" + endgame;
+}
+
+function temporizador() {
+    setInterval(() => {
+        tiempo++;
+        console.log(tiempo);
+    }, 1000);
+}
+
+function enableButtons(buttons) {
+    for (const button of buttons) {
+        button.removeAttribute("disabled");
     }
+}
+
+function showSolutions(buttons) {
+    for (const button of buttons) {
+        button.classList.add("selected");
+    }
+}
+
+function hideSolutions(buttons) {
+    for (const button of buttons) {
+        button.classList.remove("selected");
+    }
+}
+
+start_button.onclick = async function () {
+    let solutions = document.getElementsByClassName("solution");
+    showSolutions(solutions);
     resolve_button.setAttribute("disabled", true);
     setTimeout(() => {
-        for (const solution of solutions) {
-            solution.classList.remove("selected");
-        }
+        temporizador();
+        enableButtons(buttons);
+        hideSolutions(solutions);
         resolve_button.removeAttribute("disabled");
+        start_button.setAttribute("disabled", true);
     }, 4000);
 };
 
@@ -35,8 +64,4 @@ for (const button of buttons) {
             button.classList.add("selected"); // Add the option that is selected
         }
     };
-}
-
-function redirectPage(endgame) {
-    window.location.href = "./result.php?result=" + endgame;
 }
