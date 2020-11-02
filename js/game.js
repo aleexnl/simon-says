@@ -3,11 +3,13 @@ let resolve_button = document.getElementById("btn-resolve");
 let start_button = document.getElementById("btn-start");
 let tiempo = 0;
 
-start_button.onclick = function () {
+start_button.onclick = async function () {
     let solutions = document.getElementsByClassName("solution");
-    for (const solution of solutions) {
+    for await (const solution of solutions) {
         solution.classList.add("selected");
+        console.log(1);
     }
+    console.log(2);
     resolve_button.setAttribute("disabled", true);
     setTimeout(() => {
         temporizador();
@@ -18,7 +20,22 @@ start_button.onclick = function () {
         resolve_button.removeAttribute("disabled");
         start_button.setAttribute("disabled", true);
     }, 4000);
-};
+    console.log(3);
+    UserTimer();
+}; 
+
+let timer = 0;
+async function UserTimer() {
+    let timerCounter = true;
+    while (timerCounter == true) {
+        setInterval(async () => timer++, 1000);
+        console.log(timer);
+        if (timer == 5) {
+            timerCounter = false;
+        }
+    }
+}
+
 
 resolve_button.onclick = function () {
     let solution = document.getElementsByClassName("selected solution");
