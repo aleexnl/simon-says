@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <?php session_start(); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $_SESSION["actual_level"][0] ?> Level</title>
@@ -9,7 +10,6 @@
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php
-    session_start();
     require_once(__DIR__ . "/../functions.php"); // Import function files
 
     if (!isset($_SESSION['user'])) {
@@ -21,9 +21,6 @@
             $_SESSION['user'] = $_GET["uname"];
             $_SESSION["actual_level"] = get_level(0);
         }
-    }
-    if (isset($_POST['next-level'])) {
-        $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5] + 1);
     }
 
     $grid = explode('x', $_SESSION['actual_level'][1]);
@@ -43,10 +40,10 @@
 <body>
     <header>
         <a href="../" accesskey="h">
-            <h2><i class="fas fa-home"></i> HOME</h2>
+            <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
-            <h2><i class="fas fa-medal"></i> RANKING</h2>
+            <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
@@ -56,8 +53,8 @@
             <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
             <h2>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h2>
             <h3>You have <span id="show-time"><?= $_SESSION["actual_level"][3] ?></span> seconds to memorize the squares.</h3>
-            <button id="btn-start" type="submit" accesskey="P">START GAME</button>
-            <button id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
+            <button title="(Alt + P)" id="btn-start" type="submit" accesskey="P">START GAME</button>
+            <button title="(Alt + S)" id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
             <div class="game">
                 <table>
                     <tbody>

@@ -3,22 +3,23 @@ let resolve_button = document.getElementById("btn-resolve"); // get resolve butt
 let start_button = document.getElementById("btn-start");
 let correctButtons = document.getElementById("correct-squares"); // get the number of correct squares.
 let showTime = document.getElementById("show-time");
-let tiempo = 0; // Time variable
+let time = 0; // Time variable
+let intervalTimer = "";
 
-function redirectPage(endgame) {
-    // Reriderct to the corresponding result page.
-    window.location.href = "./result.php?result=" + endgame;
+function redirectPage(endgame, time) {
+    // Redirect to the corresponding result page.
+    window.location.href = `./result.php?result=${endgame}&time=${time}`;
 }
 
-function temporizador() {
+function timer() {
     // Timer for every second.
     setInterval(() => {
-        tiempo++;
+        time++;
     }, 1000);
 }
 
 function enableButtons(buttons) {
-    // Enable all buttons from the gameboard.
+    // Enable all buttons from the game board.
     for (const button of buttons) {
         button.removeAttribute("disabled");
     }
@@ -44,7 +45,7 @@ start_button.onclick = function () {
     resolve_button.setAttribute("disabled", true); // Disable resolve button
     setTimeout(() => {
         // After 4 seconds
-        temporizador(); // enable timer
+        timer(); // enable timer
         enableButtons(buttons); // enable buttons
         hideSolutions(solutions); // hide solutions
         resolve_button.removeAttribute("disabled"); // Enable resolve button
@@ -55,13 +56,14 @@ start_button.onclick = function () {
 resolve_button.onclick = function () {
     let solution = document.getElementsByClassName("selected solution");
     let selectedButtons = document.getElementsByClassName("selected");
+    clearInterval(intervalTimer);
     if (
         solution.length == correctButtons.innerText &&
         selectedButtons.length == correctButtons.innerText
     ) {
-        redirectPage("win");
+        redirectPage("win", time);
     } else {
-        redirectPage("lose");
+        redirectPage("lose", time);
     }
 };
 

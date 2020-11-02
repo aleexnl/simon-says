@@ -16,10 +16,10 @@
 <body>
     <header>
         <a href="." accesskey="H">
-            <h2><i class="fas fa-home"></i> HOME</h2>
+            <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
-            <h2><i class="fas fa-medal"></i> RANKING</h2>
+            <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
@@ -27,13 +27,16 @@
     <div class="box">
         <p id="text">You completed the <?= $_SESSION["actual_level"][0] ?> level.</p>
         <form action="../" method="post" id="form-home">
-            <input type="submit" value="Home" accesskey="H" />
+            <input title="(Alt + H)" type="submit" value="Home" accesskey="H" />
         </form>
-        <form action="game.php?action=retry" method="post" id="form-try-again">
-            <input type="submit" value="Try Again" accesskey="R" />
+        <form action="../functions.php" method="post" id="form-try-again">
+            <input title="(Alt + R)" type="submit" name="try-again" value="Try Again" accesskey="R" />
         </form>
-        <form action="./game.php" method="post" id="form-next">
-            <input type="submit" value="Next" name="next-level" accesskey="N" />
+        <form action="../functions.php" method="post" id="form-next">
+            <input title="(Alt + N)" type="submit" name="next-level" value="Next" accesskey="N" />
+        </form>
+        <form action="../functions.php" method="post" id="form-save">
+            <input title="(Alt + S)" type="submit" name="save" value="Save points" accesskey="S" />
         </form>
     </div>
     <footer>

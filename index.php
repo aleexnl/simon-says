@@ -18,10 +18,10 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 <body>
     <header>
         <a href="." accesskey="H">
-            <h2><i class="fas fa-home"></i> HOME</h2>
+            <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./pages/ranking.php" accesskey="T">
-            <h2><i class="fas fa-medal"></i> RANKING</h2>
+            <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
         </a>
     </header>
     <div class="container">
@@ -45,9 +45,9 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
             <label for="uname">
                 <h2>USERNAME</h2>
             </label>
-            <input class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required>
+            <input title="(Alt + U)" class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required accesskey="U" />
             <br>
-            <button type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
+            <button title="(Alt + P)" type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
         </form>
     </div>
 </body>
