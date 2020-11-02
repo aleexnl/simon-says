@@ -5,7 +5,7 @@
 5. The user time at the operation, is the last time the user needed to complete the operation.
 6. There is a variable in $_SESSION where all the scores are added.
 7. Each time a level is successfully completed, the punctuation is added to the variable in $_SESSION.
-8. The ranking system avoids decimals. For that reason, in each operation all the numbers are rounded to the lower number (23,5 -> 23)
+8. The ranking system avoids decimals. For that reason, in each operation all the numbers are rounded to the upper number (23,5 -> 24)
 ###################################################################
 THE FORMULA:
 

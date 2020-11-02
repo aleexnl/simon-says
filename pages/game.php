@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <?php session_start(); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $_SESSION["actual_level"][0] ?> Level</title>
@@ -9,7 +10,6 @@
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php
-    session_start();
     require_once(__DIR__ . "/../functions.php"); // Import function files
 
     if (!isset($_SESSION['user'])) {
@@ -21,9 +21,6 @@
             $_SESSION['user'] = $_GET["uname"];
             $_SESSION["actual_level"] = get_level(0);
         }
-    }
-    if (isset($_POST['next-level'])) {
-        $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5] + 1);
     }
 
     $grid = explode('x', $_SESSION['actual_level'][1]);

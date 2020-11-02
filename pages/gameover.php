@@ -30,8 +30,11 @@
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" accesskey="H" />
         </form>
-        <form action="game.php?action=retry" method="post" id="form-retry">
-            <input type="submit" value="Try again" accesskey="R" />
+        <form action="../functions.php" method="post" id="form-retry">
+            <input type="submit" name="try-again" value="Try again" accesskey="R" />
+        </form>
+        <form action="../functions.php" method="post" id="form-save">
+            <input type="submit" name="save" value="Save points" accesskey="S" />
         </form>
     </div>
     <footer>

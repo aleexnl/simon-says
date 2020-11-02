@@ -44,6 +44,10 @@ form#form-home {
 }
 
 form#form-retry {
+    margin: 25px 25px auto 25px;
+}
+
+form#form-save {
     margin: 25px auto auto 25px;
 }
 
