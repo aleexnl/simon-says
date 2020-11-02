@@ -12,6 +12,7 @@ require_once('functions.php');
 if (!isset($_SESSION["actual_level"])) {
     $_SESSION["actual_level"] = get_level(0);
 }
+$username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 ?>
 
 <body>
@@ -46,7 +47,7 @@ if (!isset($_SESSION["actual_level"])) {
             <label for="uname">
                 <h1>USERNAME</h1>
             </label>
-            <input class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $_SESSION['user'] ?>" required>
+            <input class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required>
             <br>
             <button type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
         </form>

@@ -7,14 +7,14 @@ function get_level($level_number)
     return $level;
 }
 
-function levelUp()
-{
-    header("location:./");
-}
-
 function writeInRankingFile($userStr)
 {
     file_put_contents('../ranking.cfg', $userStr . PHP_EOL, FILE_APPEND | LOCK_EX);
+}
+
+function getUserDetails()
+{
+    return $_SESSION['user'] . ";" . $_SESSION['punctuation'];
 }
 
 function reedRankingFile()
