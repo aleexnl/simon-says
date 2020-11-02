@@ -31,7 +31,7 @@
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" accesskey="H" />
         </form>
-        <form action="game.php" method=" post" id="form-retry">
+        <form action="game.php?action=retry" method="post" id="form-retry">
             <input type="submit" value="Try again" accesskey="R" />
         </form>
     </div>

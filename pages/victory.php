@@ -29,7 +29,7 @@
         <form action="../" method="post" id="form-home">
             <input type="submit" value="Home" accesskey="H" />
         </form>
-        <form action="game.php" method="post" id="form-try-again">
+        <form action="game.php?action=retry" method="post" id="form-try-again">
             <input type="submit" value="Try Again" accesskey="R" />
         </form>
         <form action="./game.php" method="post" id="form-next">
