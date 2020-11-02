@@ -16,23 +16,27 @@
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php
     session_start();
-    require_once(__DIR__ . "/../functions.php");
-    if (!isset($_SESSION['user'], $_GET["uname"]) && $_GET["action"] != "retry") {
+    require_once(__DIR__ . "/../functions.php"); // Import function files
+
+    if (!isset($_SESSION['user'])) {
         $_SESSION['user'] = $_GET["uname"];
     }
+
     if (isset($_SESSION['user'], $_GET["uname"])) {
         if ($_SESSION['user'] != $_GET["uname"]) {
             $_SESSION['user'] = $_GET["uname"];
             $_SESSION["actual_level"] = get_level(0);
         }
     }
-    if (isset($_SESSION, $_POST['next-level'])) {
+    if (isset($_POST['next-level'])) {
         $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5] + 1);
     }
+
     $grid = explode('x', $_SESSION['actual_level'][1]);
     $grid_total = $grid[0] * $grid[1];
     $randomCounter = 1;
     $randomNumbers = [];
+
     while (count($randomNumbers) != $_SESSION['actual_level'][2]) {
         $randomNumber = mt_rand(1, $grid_total);
         if (!in_array($randomNumber, $randomNumbers)) {
@@ -56,6 +60,7 @@
     <div class="container">
         <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
             <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
+            <h2>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h2>
             <button id="btn-start" type="submit" accesskey="P">START GAME</button>
             <button id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
             <div class="game">
