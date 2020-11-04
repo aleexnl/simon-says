@@ -17,25 +17,24 @@
 <body>
     <header>
         <a href="../">
-            <h2><i class="fas fa-home"></i> HOME</h2>
+            <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php">
-            <h2><i class="fas fa-medal"></i>RANKING</h2>
+            <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
     <p id="title">Game Over</p>
     <div class="box">
         <p id="text">You didn't pass the <?= $_SESSION["actual_level"][0] ?> level</p>
-        <p id="text"><small>Level code: <code><?= $_SESSION["actual_level"][4] ?></code></small></p>
         <form action="../" method="post" id="form-home">
-            <input type="submit" value="Home" accesskey="H" />
+            <input title="(Alt + H)" type="submit" value="Home" accesskey="H" />
         </form>
         <form action="../functions.php" method="post" id="form-retry">
-            <input type="submit" name="try-again" value="Try again" accesskey="R" />
+            <input title="(Alt + R)" type="submit" name="try-again" value="Try again" accesskey="R" />
         </form>
-        <form action="../functions.php" method="post" id="form-retry">
-            <input type="submit" name="save" value="Save points" accesskey="S" />
+        <form action="../functions.php" method="post" id="form-save">
+            <input title="(Alt + S)" type="submit" name="save" value="Save points" accesskey="S" />
         </form>
     </div>
     <footer>
