@@ -61,7 +61,3 @@ if (isset($_POST["try-again"])) {
     $_SESSION["actual_level"][6]++;
     header("location:pages/game.php");
 }
-if (isset($_POST["try-again"])){
-    $_SESSION["actual_level"][6] ++;
-    header("location:pages/game.php");  
-}

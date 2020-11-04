@@ -38,7 +38,6 @@
 
 <body>
     <header>
-        <?php print_r($_SESSION["actual_level"]);?>
         <a href="../" accesskey="h">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
