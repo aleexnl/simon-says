@@ -1,10 +1,13 @@
 let buttons = document.getElementsByClassName("option"); // Get all buttons.
+let uiButtons = document.getElementsByTagName("button");
 let resolve_button = document.getElementById("btn-resolve"); // get resolve button.
 let start_button = document.getElementById("btn-start");
 let correctButtons = document.getElementById("correct-squares"); // get the number of correct squares.
 let showTime = document.getElementById("show-time");
 let time = 0; // Time variable
 let intervalTimer = "";
+let hoverAudio = document.getElementById("hoverAudio");
+let selectAudio = document.getElementById("selectAudio");
 
 function redirectPage(endgame, time) {
     // Redirect to the corresponding result page.
@@ -76,4 +79,13 @@ for (const button of buttons) {
             button.classList.add("selected"); // Add the option that is selected
         }
     };
+}
+
+for (const button of uiButtons) {
+    button.addEventListener("mouseover", function (event) {
+        hoverAudio.play();
+    });
+    button.addEventListener("click", function (event) {
+        selectAudio.play();
+    });
 }

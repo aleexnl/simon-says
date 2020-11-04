@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/victory.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <audio id="audio" preload="auto" src="../sounds/win.wav"></audio>
     <?php session_start();
     require_once('../functions.php');
     if ($_SESSION['endgame'] == "lose") header("location:gameover.php") ?>
@@ -42,6 +43,7 @@
     <footer>
         <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
     </footer>
+    <script src="../js/win.js"></script>
 </body>
 
 </html>

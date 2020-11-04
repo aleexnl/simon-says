@@ -50,6 +50,7 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
             <button title="(Alt + P)" type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
         </form>
     </div>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

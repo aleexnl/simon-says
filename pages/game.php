@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <audio id="hoverAudio" preload="auto" src="../sounds/hover.wav"></audio>
+    <audio id="selectAudio" preload="auto" src="../sounds/select.wav"></audio>
+
+
     <?php
     require_once(__DIR__ . "/../functions.php"); // Import function files
 
@@ -39,7 +43,7 @@
 
 <body>
     <header>
-        <a href="../" accesskey="h">
+        <a href="../index.php" accesskey="h">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
