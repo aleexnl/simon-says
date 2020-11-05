@@ -14,17 +14,17 @@ function redirectPage(endgame, time) {
     window.location.href = `./result.php?result=${endgame}&time=${time}`;
 }
 
-function timer() {
-    // Timer for every second.
+function timer(miliseconds) {
+    // Timer for every milisecond passed as arg
     setInterval(() => {
         time++;
-    }, 1000);
+    }, miliseconds);
 }
 
-function enableButtons(buttons) {
+function enableElements(elements) {
     // Enable all buttons from the game board.
-    for (const button of buttons) {
-        button.removeAttribute("disabled");
+    for (const element of elements) {
+        element.removeAttribute("disabled");
     }
 }
 
@@ -42,18 +42,57 @@ function hideSolutions(buttons) {
     }
 }
 
-start_button.onclick = function () {
+function showImpostor(buttons) {
+    // Show all the solutions.
+    for (const button of buttons) {
+        button.classList.add("wrong");
+    }
+}
+
+function hideImpostor(buttons) {
+    // Hide all solutions.
+    for (const button of buttons) {
+        button.classList.remove("wrong");
+    }
+}
+
+function normalGame() {
     let solutions = document.getElementsByClassName("solution"); // Get all solutions
     showSolutions(solutions); // Show solutions
     resolve_button.setAttribute("disabled", true); // Disable resolve button
     setTimeout(() => {
         // After 4 seconds
-        timer(); // enable timer
-        enableButtons(buttons); // enable buttons
+        timer(1000); // enable timer
+        enableElements(buttons); // enable buttons
         hideSolutions(solutions); // hide solutions
         resolve_button.removeAttribute("disabled"); // Enable resolve button
         start_button.setAttribute("disabled", true); // Disable start button
     }, showTime.innerText * 1000);
+}
+
+function impostorGame() {
+    let solutions = document.getElementsByClassName("solution"); // Get all solutions
+    let impostor = document.getElementsByClassName("impostor"); // Get all solutions
+    showSolutions(solutions); // Show solutions
+    showImpostor(impostor);
+    resolve_button.setAttribute("disabled", true); // Disable resolve button
+    setTimeout(() => {
+        // After 4 seconds
+        timer(1000); // enable timer
+        enableElements(buttons); // enable buttons
+        hideSolutions(solutions); // hide solutions
+        hideImpostor(impostor);
+        resolve_button.removeAttribute("disabled"); // Enable resolve button
+        start_button.setAttribute("disabled", true); // Disable start button
+    }, showTime.innerText * 1000);
+}
+
+start_button.onclick = function () {
+    if (!document.getElementById("impostor-squares")) {
+        normalGame();
+    } else {
+        impostorGame();
+    }
 };
 
 resolve_button.onclick = function () {

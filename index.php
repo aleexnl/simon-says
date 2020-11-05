@@ -5,10 +5,13 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <audio id="hoverAudio" preload="auto" src="sounds/hover.wav"></audio>
+
 </head>
 <?php
 session_start();
 require_once('functions.php');
+$_SESSION["imposterMode"] = false;
 if (!isset($_SESSION["actual_level"])) {
     $_SESSION["actual_level"] = get_level(0);
 }
@@ -42,10 +45,20 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
         </div>
 
         <form id="form" action="pages/game.php" method="GET">
-            <label for="uname">
-                <h2>USERNAME</h2>
-            </label>
-            <input title="(Alt + U)" class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required accesskey="U" />
+            <div class="form-option">
+                <label for="uname">
+                    <h2>Username</h2>
+                </label>
+                <input title="(Alt + U)" class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required accesskey="U" />
+            </div>
+            <div class="form-option">
+                <label for="imposterMode">Enable Imposter mode</label>
+                <input type="checkbox" name="imposterMode" id="imposterMode">
+            </div>
+            <div class="form-option">
+                <label for="survivalMode">Enable Survival mode</label>
+                <input type="checkbox" name="survivalMode" id="survivalMode">
+            </div>
             <br>
             <button title="(Alt + P)" type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
         </form>
