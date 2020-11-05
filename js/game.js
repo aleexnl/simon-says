@@ -85,13 +85,13 @@ function progressBar(time){
     let progress = 0; // Initial width of the progress bar.
     var intervalProgress = setInterval(() => { // The width increases in 1% every 10ms*time.
         const progressBar = document.getElementById("Progress");
-        progress ++;
-        progressCounter ++
+        progress++;
+        progressCounter++
         if (progressCounter >= (100/time)) { // For each 1 second, a second is subtracted from remaining time.
             progressCounter = 0; 
-            RemainingTime -= 1; 
-            document.getElementById("timer").innerHTML = RemainingTime;
+            RemainingTime--; 
         }
+        document.getElementById("timer").innerHTML = RemainingTime;
         progressBar.style.width = `${(progress)}%`;
         if (progress >= 100){
             clearInterval(intervalProgress);
@@ -100,6 +100,5 @@ function progressBar(time){
 }
 
 function getColor(title) { //DOES NOT WORK
-    let color = title.split(" ")[0];
-    return color;
+    return title.split(" ")[0];
 }
