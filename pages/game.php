@@ -9,8 +9,67 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <audio id="hoverAudio" preload="auto" src="../sounds/hover.wav"></audio>
+    <audio id="selectAudio" preload="auto" src="../sounds/select.wav"></audio>
+    <style>
+        .wrong {
+            background-color: red;
+        }
+    </style>
     <?php
     require_once(__DIR__ . "/../functions.php"); // Import function files
+    $isSurvival = false;
+    $isImposter = false;
+    function normalBoard($grid, $numbers)
+    {
+        $randomCounter = 1;
+        for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
+            echo "<tr>";
+            for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
+                if (in_array($randomCounter++, $numbers)) {
+                    echo "<td><button type='submit' class='square option solution' disabled></button></td>";
+                } else {
+                    echo "<td><button type='submit' class='square option' disabled></button></td>";
+                }
+            }
+            echo "</tr>";
+        }
+    }
+    function imposterBoard($grid, $numbers, $imposterNumbers)
+    {
+        $randomCounter = 1;
+        for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
+            echo "<tr>";
+            for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
+                if (in_array($randomCounter, $numbers)) {
+                    $randomCounter++;
+                    echo "<td><button type='submit' class='square option solution' disabled></button></td>";
+                } elseif (in_array($randomCounter, $imposterNumbers)) {
+                    $randomCounter++;
+                    echo "<td><button type='submit' class='square option impostor' disabled></button></td>";
+                } else {
+                    $randomCounter++;
+                    echo "<td><button type='submit' class='square option' disabled></button></td>";
+                }
+            }
+            echo "</tr>";
+        }
+    }
+    function generateRandomnumbers($limit, $gridTotal, $compareArray = [])
+    {
+        $numbers = [];
+        while (count($numbers) != $limit) {
+            $randomNumber = mt_rand(1, $gridTotal);
+            if (!in_array($randomNumber, $numbers) && !in_array($randomNumber, $compareArray)) {
+                array_push($numbers, $randomNumber);
+            }
+        }
+        return $numbers;
+    }
+    if (isset($_GET['imposterMode']) or $_SESSION["imposterMode"]) {
+        $isImposter = true;
+        $_SESSION["imposterMode"] =  true;
+    }
 
     if (!isset($_SESSION['user'])) {
         $_SESSION['user'] = $_GET["uname"];
@@ -23,22 +82,31 @@
         }
     }
     $grid = explode('x', $_SESSION['actual_level'][1]);
-    $grid_total = $grid[0] * $grid[1];
-    $randomCounter = 1;
+    $gridTotal = $grid[0] * $grid[1];
     $randomNumbers = [];
 
-    while (count($randomNumbers) != $_SESSION['actual_level'][2]) {
-        $randomNumber = mt_rand(1, $grid_total);
-        if (!in_array($randomNumber, $randomNumbers)) {
-            array_push($randomNumbers, $randomNumber);
-        }
+    if ($isImposter) {
+        $imposterSquares = floor($_SESSION['actual_level'][2] / 2);
+        // echo "Impostor Squares: " .  $imposterSquares;
+        $normalSquares = $_SESSION['actual_level'][2] - $imposterSquares;
+        // echo "Normal Squares: " .  $normalSquares;
+        array_push($randomNumbers, [], []);
+        $randomNumbers[0] = generateRandomnumbers($normalSquares, $gridTotal);
+        //print_r($randomNumbers[0]);
+        $randomNumbers[1] = generateRandomnumbers($imposterSquares, $gridTotal, $randomNumbers[0]);
+        //print_r($randomNumbers[1]);
+    } else {
+        $randomNumbers = generateRandomnumbers($_SESSION['actual_level'][2], $gridTotal);
     }
+
     ?>
+
 </head>
 
 <body>
+    <noscript>You need to enable JavaScript in your browser in order to play this game</noscript>
     <header>
-        <a href="../" accesskey="h">
+        <a href="../index.php" accesskey="h">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
@@ -50,7 +118,12 @@
     <div class="container">
         <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
             <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
-            <h2>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h2>
+            <?php if (!$isImposter) : ?>
+                <h3>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h3>
+            <?php else : ?>
+                <h2>ATTENTION CREWMATE! There are <span id="impostor-squares"><?= $imposterSquares ?></span> impostor squares among us!</h2>
+                <h3>Select the <span id="correct-squares"><?= $normalSquares ?></span> correct squares</h3>
+            <?php endif ?>
             <h3>You have <span id="show-time"><?= $_SESSION["actual_level"][3] ?></span> seconds to memorize the squares.</h3>
             <div id="BarContent">
                 <div id="Bar">
@@ -63,16 +136,10 @@
                 <table>
                     <tbody>
                         <?php
-                        for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
-                            echo "<tr>";
-                            for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
-                                if (in_array($randomCounter++, $randomNumbers)) {
-                                    echo "<td><button type='submit' class='square option solution' disabled></button></td>";
-                                } else {
-                                    echo "<td><button type='submit' class='square option' disabled></button></td>";
-                                }
-                            }
-                            echo "</tr>";
+                        if (!$isImposter) {
+                            normalBoard($grid, $randomNumbers);
+                        } else {
+                            imposterBoard($grid, $randomNumbers[0], $randomNumbers[1]);
                         }
                         ?>
                     </tbody>
