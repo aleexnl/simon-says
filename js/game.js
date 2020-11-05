@@ -5,6 +5,7 @@ let correctButtons = document.getElementById("correct-squares"); // get the numb
 let showTime = document.getElementById("show-time");
 let time = 0; // Time variable
 let intervalTimer = "";
+let progressCounter = 0;
 
 function redirectPage(endgame, time) {
     // Redirect to the corresponding result page.
@@ -80,10 +81,17 @@ for (const button of buttons) {
 }
 
 function progressBar(time){
-    let progress = 0;
-    var intervalProgress = setInterval(() => {
+    let RemainingTime = time;
+    let progress = 0; // Initial width of the progress bar.
+    var intervalProgress = setInterval(() => { // The width increases in 1% every 10ms*time.
         const progressBar = document.getElementById("Progress");
         progress ++;
+        progressCounter ++
+        if (progressCounter >= (100/time)) { // For each 1 second, a second is subtracted from remaining time.
+            progressCounter = 0; 
+            RemainingTime -= 1; 
+            document.getElementById("timer").innerHTML = RemainingTime;
+        }
         progressBar.style.width = `${(progress)}%`;
         if (progress >= 100){
             clearInterval(intervalProgress);
@@ -91,3 +99,7 @@ function progressBar(time){
     }, time*10);
 }
 
+function getColor(title) { //DOES NOT WORK
+    let color = title.split(" ")[0];
+    return color;
+}
