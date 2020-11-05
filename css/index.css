@@ -68,7 +68,11 @@ form input {
 }
 
 /*** 800X600 ***/
-@media (max-width: 800px) {}
+@media (max-width: 800px) {
+    img {
+        width: 80%;
+    }
+}
 
 /*** 500X600 ***/
 @media (max-width: 500px) {
@@ -85,14 +89,6 @@ form input {
 
 /*** 375X667 ***/
 @media (max-width: 375px) {
-    header {
-        height: 3rem;
-    }
-
-    header a h2 {
-        font-size: 1.3em !important;
-    }
-
     img {
         width: 90%;
     }

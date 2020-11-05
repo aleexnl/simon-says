@@ -53,6 +53,16 @@ button:disabled {
     text-align: center;
 }
 
+/*** 800X600 ***/
+@media (max-width: 800px) {
+    header {
+        height: 4rem;
+    }
+
+    header a h2 {
+        font-size: 1.5em !important;
+    }
+}
 /*** 375X667 ***/
 @media (max-width: 375px) {
     header {
