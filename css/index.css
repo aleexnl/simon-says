@@ -1,9 +1,4 @@
-form {
-    align-content: center;
-    text-align: center;
-    padding: 2%;
-}
-
+/*** 1920x1080 ***/
 .content {
     vertical-align: middle;
 }
@@ -14,9 +9,23 @@ form {
     width: 50%;
     margin-top: 5rem;
 }
+
 .instructions {
     list-style-position: inside;
     text-align: center;
+    margin-top: 2.5rem;
+    padding: 0 2%;
+}
+
+ol {
+    padding: 0 2%;
+}
+
+form {
+    align-content: center;
+    text-align: center;
+    padding: 1%;
+    margin: 0;
 }
 
 h1 {
@@ -36,4 +45,89 @@ form input {
     padding: 1rem;
     font-size: 1.25rem;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+}
+
+/*** 1366x768 ***/
+@media (max-width: 1366px) {
+    img {
+        width: 60%;
+    }
+
+    .instructions {
+        margin-top: 0;
+    }
+}
+
+/*** 1024x768 ***/
+@media (max-width: 1024px) {}
+
+@media (max-height: 768px) {
+    form {
+        padding: 0 2%;
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    form label {
+        width: 100%;
+    }
+
+    form label h2 {
+        margin: 0.4em 0;
+    }
+
+    input[type="text"] {
+        margin: auto 10px auto auto;
+    }
+
+    button {
+        margin: auto auto auto 10px;
+    }
+}
+
+/*** 800X600 ***/
+@media (max-width: 800px) {
+    img {
+        width: 80%;
+    }
+}
+
+/*** 500X600 ***/
+@media (max-width: 500px) {
+    input[type="text"] {
+        margin: auto auto 5px auto;
+        width: 90%;
+    }
+
+    button {
+        margin: auto auto 5px auto;
+        width: 60%;
+    }
+}
+
+/*** 375X667 ***/
+@media (max-width: 375px) {
+    img {
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+
+    li {
+        font-size: 0.9em;
+    }
+
+    form label h2 {
+        font-size: 1.5em;
+    }
+
+    form {
+        display: block;
+    }
 }

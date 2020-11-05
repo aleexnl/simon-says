@@ -10,8 +10,7 @@
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php
     session_start();
-    if ($_SESSION['endgame'] == "win") header("location:victory.php")
-    ?>
+    if ($_SESSION['endgame'] == "win") header("location:victory.php")?>
 </head>
 
 <body>

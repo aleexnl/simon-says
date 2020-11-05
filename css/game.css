@@ -13,6 +13,7 @@ td {
     border: 5px solid #a4a4a4;
     border-spacing: 0px;
 }
+
 tbody tr td button {
     cursor: pointer;
     height: 100px;
@@ -49,4 +50,11 @@ tbody tr td button {
 .selected {
     background-color: #2e9cca;
     cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+    tbody tr td button {
+        height: 70px;
+        width: 70px;
+    }
 }

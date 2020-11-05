@@ -1,3 +1,4 @@
+/*** 1920x1080 ***/
 @font-face {
     font-family: AmongUsFont;
     src: url("../fonts/VCR_OSD_MONO.ttf");
@@ -15,13 +16,14 @@ body {
 }
 
 p#title {
-    font-size: 0px;
+    font-size: 8em;
     font-weight: bold;
     color: #e44024;
     text-align: center;
     width: 100%;
     font-family: AmongUsFont;
     animation: 1.25s both titleEffect;
+    margin-top: 1em;
 }
 
 div.box {
@@ -56,11 +58,15 @@ input[type="submit"] {
 }
 
 form#form-home {
-    margin: 25px 25px auto auto;
+    margin: 25px 2% auto auto;
 }
 
 form#form-retry {
-    margin: 25px auto auto 25px;
+    margin: 25px 2% auto 2%;
+}
+
+form#form-save {
+    margin: 25px auto auto 2%;
 }
 
 footer {
@@ -75,12 +81,130 @@ p.level-code {
     text-align: center;
     margin-bottom: 2%;
 }
+
 @keyframes titleEffect {
     from {
         font-size: 0px;
     }
 
     to {
-        font-size: 120px;
+        font-size: 8em;
+    }
+}
+
+
+/*** 1366x768 ***/
+@media (max-width: 1366px) {}
+
+/*** 1024x768 ***/
+@media (max-width: 1024px) {
+    form {
+        margin: auto !important;
+        width: 33%;
+        text-align: center;
+    }
+}
+
+@media (max-height: 768px) {
+    p#title {
+        margin: 5% 0 1em 0;
+    }
+
+    footer {
+        position: relative;
+    }
+
+    div.box {
+        margin-bottom: 7em;
+        box-shadow: 0 0 50px 58px #821f0b;
+    }
+
+    @keyframes titleEffect {
+        from {
+            font-size: 0em;
+        }
+
+        to {
+            font-size: 6em;
+        }
+    }
+}
+
+/*** 800X600 ***/
+@media (max-width: 800px) {
+    p#title {
+        margin: 0.2em 0 1em 0;
+    }
+
+    form {
+        margin: 1% auto !important;
+        width: 50%;
+    }
+
+    p#text {
+        margin: 1% 0 2% 0;
+        font-size: 24px;
+    }
+
+    header a h2,
+    header h2 {
+        font-size: 1.2em !important;
+    }
+}
+
+/*** 375X667 ***/
+@media (max-width: 500px) {
+    @keyframes titleEffect {
+        from {
+            font-size: 0em;
+        }
+
+        to {
+            font-size: 4.4em;
+        }
+    }
+}
+
+/*** 375X667 ***/
+@media (max-width: 375px) {
+    p#text {
+        font-size: 1.3em;
+    }
+
+    p#title {
+        margin: 0.5em 0 0 0;
+    }
+
+    form {
+        margin: 1% auto !important;
+        width: 100%;
+    }
+
+    div.box {
+        margin-top: 30%;
+    }
+
+    @keyframes titleEffect {
+        from {
+            font-size: 0em;
+        }
+
+        to {
+            font-size: 4em;
+        }
+    }
+}
+
+
+/*** 290X667 ***/
+@media (max-width: 375px) {
+    @keyframes titleEffect {
+        from {
+            font-size: 0em;
+        }
+
+        to {
+            font-size: 3.2em;
+        }
     }
 }
