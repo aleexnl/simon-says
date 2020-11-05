@@ -50,3 +50,21 @@ tbody tr td button {
     background-color: #2e9cca;
     cursor: not-allowed;
 }
+
+#BarContent {
+    text-align: -webkit-center;
+}
+
+#Bar {
+    width: 20rem;
+    height: 1rem;
+    border: 0.3rem solid grey;
+    margin-top: 1.5rem;
+    background-color: grey;
+}
+
+#Progress {
+    height: 1rem;
+    background-color: #2e9cca;
+    width: 0%;
+}

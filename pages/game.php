@@ -52,6 +52,11 @@
             <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
             <h2>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h2>
             <h3>You have <span id="show-time"><?= $_SESSION["actual_level"][3] ?></span> seconds to memorize the squares.</h3>
+            <div id="BarContent">
+                <div id="Bar">
+                    <div id="Progress"></div>
+                </div>
+            </div>
             <button title="(Alt + P)" id="btn-start" type="submit" accesskey="P">START GAME</button>
             <button title="(Alt + S)" id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
             <div class="game">
