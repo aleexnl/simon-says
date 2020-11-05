@@ -52,6 +52,23 @@ tbody tr td button {
     cursor: not-allowed;
 }
 
+#BarContent {
+    text-align: -webkit-center;
+}
+
+#Bar {
+    width: 20rem;
+    height: 1rem;
+    border: 0.3rem solid grey;
+    margin-top: 1.5rem;
+    background-color: grey;
+}
+
+#Progress {
+    height: 1rem;
+    background-color: #2e9cca;
+    width: 0%;
+}
 @media (max-width: 800px) {
     tbody tr td button {
         height: 70px;
