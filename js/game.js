@@ -129,25 +129,22 @@ function progressBar(time) {
         // The width increases in 1% every 10ms*time.
         const progressBar = document.getElementById("Progress");
         progress++;
-        progressCounter++;
-        if (progressCounter >= 100 / time) {
-            // For each 1 second, a second is subtracted from remaining time.
-            progressCounter = 0;
-            RemainingTime -= 1;
-            document.getElementById("timer").innerHTML = RemainingTime;
+        progressCounter++
+        if (progressCounter >= 100 / time) { // For each 1 second, a second is subtracted from remaining time.
+            progressCounter = 0; 
+            RemainingTime--; 
         }
-        progressBar.style.width = `${progress}%`;
-        if (progress >= 100) {
+        document.getElementById("timer").innerHTML = RemainingTime;
+        progressBar.style.width = `${(progress)}%`;
+        if (progress >= 100)
             clearInterval(intervalProgress);
-        }
     }, time * 10);
 }
 
-function getColor(title) {
-    //DOES NOT WORK
-    let color = title.split(" ")[0];
-    return color;
+function getColor(title) { //DOES NOT WORK
+    return title.split(" ")[0];
 }
+
 for (const button of uiButtons) {
     button.addEventListener("mouseover", function (event) {
         hoverAudio.play();
