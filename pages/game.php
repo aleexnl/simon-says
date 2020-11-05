@@ -22,7 +22,6 @@
             $_SESSION["actual_level"] = get_level(0);
         }
     }
-
     $grid = explode('x', $_SESSION['actual_level'][1]);
     $grid_total = $grid[0] * $grid[1];
     $randomCounter = 1;

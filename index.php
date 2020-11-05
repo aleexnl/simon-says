@@ -12,22 +12,23 @@ require_once('functions.php');
 if (!isset($_SESSION["actual_level"])) {
     $_SESSION["actual_level"] = get_level(0);
 }
-$username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 ?>
 
 <body>
     <header>
         <a href="." accesskey="H">
-            <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
+            <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./pages/ranking.php" accesskey="T">
-            <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
+            <h2><i class="fas fa-medal"></i>RANKING</h2>
         </a>
     </header>
-    <div class="container">
-        <img src="./img/Title.png" alt="Simon Says Title">
-        <h2>Welcome to Simon says, the web version!</h2>
+    <div class="content">
+        <div class="image">
+            <img src="./img/Title.png" alt="Simon Says Title">
+        </div>
         <div class="instructions">
+            <h1>Welcome to Simon says, the web version!</h1>
             <h2>INSTRUCTIONS</h2>
             <h3>In order to win, you have to select all the correct squares</h3>
             <ol>
@@ -43,11 +44,11 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 
         <form id="form" action="pages/game.php" method="GET">
             <label for="uname">
-                <h2>USERNAME</h2>
+                <h1>USERNAME</h1>
             </label>
-            <input title="(Alt + U)" class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required accesskey="U" />
+            <input class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $_SESSION['user'] ?>" required>
             <br>
-            <button title="(Alt + P)" type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
+            <button type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
         </form>
     </div>
 </body>

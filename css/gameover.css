@@ -1,3 +1,19 @@
+@font-face {
+    font-family: AmongUsFont;
+    src: url("../fonts/VCR_OSD_MONO.ttf");
+}
+
+header {
+    position: fixed !important;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0;
+    padding: 0 10px;
+}
+
 p#title {
     font-size: 0px;
     font-weight: bold;
@@ -44,10 +60,6 @@ form#form-home {
 }
 
 form#form-retry {
-    margin: 25px 25px auto 25px;
-}
-
-form#form-save {
     margin: 25px auto auto 25px;
 }
 
