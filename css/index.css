@@ -2,12 +2,14 @@
 .content {
     vertical-align: middle;
 }
+
 .image {
     text-align: center;
 }
-.image img {
+
+img {
     width: 50%;
-    margin-top: 5rem;
+    margin-top: 1em;
 }
 
 .instructions {
@@ -32,14 +34,17 @@ h1 {
     margin-top: 1rem;
     text-align: center;
 }
+
 form button {
     font-size: 1.5rem;
     padding: 0.5rem 2rem;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
 }
+
 form button:hover {
     cursor: pointer;
 }
+
 form input {
     margin: -0.5rem 0 1rem 0;
     padding: 1rem;

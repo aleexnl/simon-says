@@ -4,15 +4,13 @@
     src: url("../fonts/VCR_OSD_MONO.ttf");
 }
 
-header {
-    position: fixed !important;
+body {
+    margin: 0;
+    padding: 0;
 }
 
-body {
-    display: flex;
-    flex-flow: row wrap;
-    margin: 0;
-    padding: 0 10px;
+h1 {
+    font-size: 1em;
 }
 
 p#title {
