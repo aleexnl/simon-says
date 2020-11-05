@@ -7,6 +7,7 @@ td {
     border: 5px solid #a4a4a4;
     border-spacing: 0px;
 }
+
 tbody tr td button {
     cursor: pointer;
     height: 100px;
@@ -31,4 +32,11 @@ tbody tr td button {
 #btn-start,
 #btn-resolve {
     margin: 0 0 1rem 0;
+}
+
+@media (max-width: 800px) {
+    tbody tr td button {
+        height: 70px;
+        width: 70px;
+    }
 }
