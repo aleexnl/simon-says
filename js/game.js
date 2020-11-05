@@ -43,6 +43,7 @@ start_button.onclick = function () {
     let solutions = document.getElementsByClassName("solution"); // Get all solutions
     showSolutions(solutions); // Show solutions
     resolve_button.setAttribute("disabled", true); // Disable resolve button
+    progressBar(showTime.innerText);
     setTimeout(() => {
         // After 4 seconds
         timer(); // enable timer
@@ -77,3 +78,16 @@ for (const button of buttons) {
         }
     };
 }
+
+function progressBar(time){
+    let progress = 0;
+    var intervalProgress = setInterval(() => {
+        const progressBar = document.getElementById("Progress");
+        progress ++;
+        progressBar.style.width = `${(progress)}%`;
+        if (progress >= 100){
+            clearInterval(intervalProgress);
+        }
+    }, time*10);
+}
+
