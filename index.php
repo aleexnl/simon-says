@@ -13,6 +13,7 @@
 session_start();
 require_once('functions.php');
 $_SESSION["imposterMode"] = false;
+$username = isset($_SESSION["user"]) ? $_SESSION["user"] : '';
 if (!isset($_SESSION["actual_level"])) {
     $_SESSION["actual_level"] = get_level(0);
 }
