@@ -1,3 +1,20 @@
+/*** 1920x1080 ***/
+@font-face {
+    font-family: AmongUsFont;
+    src: url("../fonts/VCR_OSD_MONO.ttf");
+}
+
+header {
+    position: fixed !important;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0;
+    padding: 0 10px;
+}
+
 p#title {
     font-size: 8em;
     font-weight: bold;

@@ -9,26 +9,19 @@
     <link rel="stylesheet" href="../css/ranking.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php session_start() ?>
-    <?php require_once("../functions.php"); ?>
-    <?php $users = reedRankingFile(); ?>
-    <?php
-    usort($users, function ($item1, $item2) {
-        return $item2['punctuation'] <=> $item1['punctuation'];
-    });
-    ?>
+    <?php /*** AQUÍ QUE LEER EL ARCHIVO DEL RANKING ***/ ?>
+    <?php /*** AQUÍ ORDENAR EL ARRAY DEL RANKING ***/ ?>
 </head>
 
 <body>
     <header>
         <a href="../" accesskey="H">
-            <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
+            <h2><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
-            <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
+            <h2><i class="fas fa-medal"></i>RANKING</h2>
         </a>
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
-            <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
-        <?php endif ?>
+        <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
     <h1 class="title">Ranking</h1>
     <table cellspacing="0" cellpadding="0">
@@ -43,18 +36,38 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            foreach ($users as $user) {
-                echo "<tr>";
-                echo "<td>";
-                echo "<p class='username'>" . $user['user'] . "</p>";
-                echo "</td>";
-                echo "<td>";
-                echo "<p class='points'>" . $user['punctuation'] . "</p>";
-                echo "</td>";
-                echo "</tr>";
-            }
-            ?>
+            <tr>
+                <td>
+                    <p class="username">Alex</p>
+                </td>
+                <td>
+                    <p class="points">1700</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="username">Jesus</p>
+                </td>
+                <td>
+                    <p class="points">1500</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="username">Carlos</p>
+                </td>
+                <td>
+                    <p class="points">1200</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="username">David</p>
+                </td>
+                <td>
+                    <p class="points">1000</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 </body>
