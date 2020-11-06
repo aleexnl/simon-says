@@ -30,6 +30,10 @@ form {
     margin: 0;
 }
 
+.form-option {
+    width: 100%;
+}
+
 h1 {
     margin-top: 1rem;
     text-align: center;
@@ -37,6 +41,7 @@ h1 {
 }
 
 form button {
+    margin: auto;
     font-size: 1.5rem;
     padding: 0.5rem 2rem;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
@@ -48,9 +53,14 @@ form button:hover {
 
 form input {
     margin: -0.5rem 0 1rem 0;
-    padding: 1rem;
+    padding: 0.5rem;
     font-size: 1.25rem;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+}
+
+.input-code-lvl {
+    width: 150px;
+    text-align: center;
 }
 
 /*** 1366x768 ***/

@@ -62,13 +62,13 @@ function normalGame() {
     showSolutions(solutions); // Show solutions
     resolve_button.setAttribute("disabled", true); // Disable resolve button
     progressBar(showTime.innerText);
+    start_button.setAttribute("disabled", true); // Disable start button
     setTimeout(() => {
         // After 4 seconds
         timer(1000); // enable timer
         enableElements(buttons); // enable buttons
         hideSolutions(solutions); // hide solutions
         resolve_button.removeAttribute("disabled"); // Enable resolve button
-        start_button.setAttribute("disabled", true); // Disable start button
     }, showTime.innerText * 1000);
 }
 
@@ -129,7 +129,7 @@ function progressBar(time) {
         // The width increases in 1% every 10ms*time.
         const progressBar = document.getElementById("Progress");
         progress++;
-        progressCounter++
+        progressCounter++;
         if (progressCounter >= 100 / time) { // For each 1 second, a second is subtracted from remaining time.
             progressCounter = 0; 
             RemainingTime--; 
