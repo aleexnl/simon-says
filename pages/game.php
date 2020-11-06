@@ -54,8 +54,10 @@
             <h3>You have <span id="show-time"><?= $_SESSION["actual_level"][3] ?></span> seconds to memorize the squares.</h3>
             <div id="BarContent">
                 <div id="Bar">
-                    <div id="Progress"></div>
-                </div>
+                    <div id="Progress">
+                        <div id="timer"></div>
+                    </div> 
+                </div>  
             </div>
             <button title="(Alt + P)" id="btn-start" type="submit" accesskey="P">START GAME</button>
             <button title="(Alt + S)" id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
