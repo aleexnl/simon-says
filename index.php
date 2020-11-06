@@ -47,12 +47,13 @@ if (!isset($_SESSION["actual_level"])) {
             <h3>Complete all the levels in the shortest time to score more points!</h3>
         </div>
 
-        <form id="form" action="pages/game.php" method="GET">
+        <form id="form" action="pages/game.php" method="POST">
             <div class="form-option">
                 <label for="uname">
                     <h2>Username</h2>
                 </label>
                 <input title="(Alt + U)" class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required accesskey="U" />
+                <input title="(Alt + C)" class="input-box input-code-lvl" type="text" placeholder="Code lvl" name="code" accesskey="C" />
             </div>
             <div class="form-option">
                 <label for="imposterMode">Enable Imposter mode</label>

@@ -25,7 +25,7 @@
         $randomCounter = 1;
         for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
             echo "<tr>";
-            for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
+            for ($columnCounter = 0; $columnCounter < $grid[1]; $columnCounter++) {
                 if (in_array($randomCounter++, $numbers)) {
                     echo "<td><button type='submit' class='square option solution' disabled></button></td>";
                 } else {
@@ -40,7 +40,7 @@
         $randomCounter = 1;
         for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
             echo "<tr>";
-            for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
+            for ($columnCounter = 0; $columnCounter < $grid[1]; $columnCounter++) {
                 if (in_array($randomCounter, $numbers)) {
                     $randomCounter++;
                     echo "<td><button type='submit' class='square option solution' disabled></button></td>";
@@ -55,7 +55,7 @@
             echo "</tr>";
         }
     }
-    function generateRandomnumbers($limit, $gridTotal, $compareArray = [])
+    function generateRandomNumbers($limit, $gridTotal, $compareArray = [])
     {
         $numbers = [];
         while (count($numbers) != $limit) {
@@ -66,18 +66,34 @@
         }
         return $numbers;
     }
-    if (isset($_GET['imposterMode']) or $_SESSION["imposterMode"]) {
+    function getLevelFromCode()
+    {
+        /* QUITAR LOS ESPACIOS DEL INPUT DEL CODE */
+        for ($index = 0; $index < 10; $index++) {
+            $lvl = get_level($index);
+            $lvlCode = str_replace("\n", "", get_level($index)[4]);
+            if ($lvlCode == $_POST['code']) {
+                $_SESSION['actual_level'] = $lvl;
+                break;
+            }
+        }
+    }
+    if (isset($_POST['imposterMode']) or $_SESSION["imposterMode"]) {
         $isImposter = true;
         $_SESSION["imposterMode"] =  true;
     }
 
     if (!isset($_SESSION['user'])) {
-        $_SESSION['user'] = $_GET["uname"];
+        $_SESSION['user'] = $_POST["uname"];
     }
 
-    if (isset($_SESSION['user'], $_GET["uname"])) {
-        if ($_SESSION['user'] != $_GET["uname"]) {
-            $_SESSION['user'] = $_GET["uname"];
+    if (isset($_POST['code'])) {
+        getLevelFromCode();
+    }
+
+    if (isset($_SESSION['user'], $_POST["uname"])) {
+        if ($_SESSION['user'] != $_POST["uname"]) {
+            $_SESSION['user'] = $_POST["uname"];
             $_SESSION["actual_level"] = get_level(0);
         }
     }
@@ -91,12 +107,12 @@
         $normalSquares = $_SESSION['actual_level'][2] - $imposterSquares;
         // echo "Normal Squares: " .  $normalSquares;
         array_push($randomNumbers, [], []);
-        $randomNumbers[0] = generateRandomnumbers($normalSquares, $gridTotal);
+        $randomNumbers[0] = generateRandomNumbers($normalSquares, $gridTotal);
         //print_r($randomNumbers[0]);
-        $randomNumbers[1] = generateRandomnumbers($imposterSquares, $gridTotal, $randomNumbers[0]);
+        $randomNumbers[1] = generateRandomNumbers($imposterSquares, $gridTotal, $randomNumbers[0]);
         //print_r($randomNumbers[1]);
     } else {
-        $randomNumbers = generateRandomnumbers($_SESSION['actual_level'][2], $gridTotal);
+        $randomNumbers = generateRandomNumbers($_SESSION['actual_level'][2], $gridTotal);
     }
 
     ?>
@@ -149,7 +165,7 @@
             </div>
         <?php else : ?>
             <h1>ERROR</h1>
-            <p>Please, enter a valid username before accesing to the game!</p>
+            <p>Please, enter a valid username before accessing to the game!</p>
         <?php endif ?>
     </div>
     <script src="../js/game.js"></script>
