@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+
 @font-face {
     font-family: AmongUsFont;
     src: url("../fonts/VCR_OSD_MONO.ttf");
@@ -10,6 +11,7 @@ body {
     font-family: "Ubuntu Mono", monospace;
     margin: 0;
 }
+
 header {
     background-color: rgb(17, 17, 17);
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
@@ -18,10 +20,11 @@ header {
     width: 100%;
     height: 5rem;
 }
+
 header a {
     text-decoration: none;
     color: rgb(255, 255, 255);
-    margin: 0 1.25rem;
+    margin: 0 1rem;
 }
 
 h1 {
@@ -29,7 +32,6 @@ h1 {
     font-size: 80px;
     margin: 1rem 0;
     text-align: center;
-    font-size: 80px;
 }
 
 button {
@@ -41,10 +43,32 @@ button {
 button:enabled {
     cursor: pointer;
 }
+
 button:disabled {
     cursor: not-allowed;
 }
 
 .container {
     text-align: center;
+}
+
+/*** 800X600 ***/
+@media (max-width: 800px) {
+    header {
+        height: 4rem;
+    }
+
+    header a h2 {
+        font-size: 1.5em !important;
+    }
+}
+/*** 375X667 ***/
+@media (max-width: 375px) {
+    header {
+        height: 3rem;
+    }
+
+    header a h2 {
+        font-size: 1.3em !important;
+    }
 }

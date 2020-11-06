@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>You Win</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/victory.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <audio id="audio" preload="auto" src="../sounds/win.wav"></audio>
     <?php session_start();
     require_once('../functions.php');
     if ($_SESSION['endgame'] == "lose") header("location:gameover.php") ?>
@@ -15,7 +16,7 @@
 
 <body>
     <header>
-        <a href="." accesskey="H">
+        <a href="../" accesskey="H">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
@@ -42,6 +43,7 @@
     <footer>
         <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
     </footer>
+    <script src="../js/win.js"></script>
 </body>
 
 </html>
