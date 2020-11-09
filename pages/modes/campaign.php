@@ -1,3 +1,8 @@
+<style>
+    .wrong {
+        background-color: red;
+    }
+</style>
 <div class="container">
     <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
         <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
@@ -7,7 +12,7 @@
             <h2>ATTENTION CREWMATE! There are <span id="impostor-squares"><?= $imposterSquares ?></span> impostor squares among us!</h2>
             <h3>Select the <span id="correct-squares"><?= $normalSquares ?></span> correct squares</h3>
         <?php endif ?>
-        <h3>You have <span id="show-time"><?= $_SESSION["actual_level"][3] ?></span> seconds to memorize the squares.</h3>
+        <h3>You have <span id="show-time"><?= $secondsToShow ?></span> seconds to memorize the squares.</h3>
         <div id="BarContent">
             <div id="Bar">
                 <div id="Progress">
