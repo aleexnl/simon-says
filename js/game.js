@@ -90,8 +90,8 @@ function progressBar(time){
         if (progressCounter >= (100/time)) { // For each 1 second, a second is subtracted from remaining time.
             progressCounter = 0; 
             RemainingTime -= 1; 
-            document.getElementById("timer").innerHTML = RemainingTime;
         }
+        document.getElementById("timer").innerHTML = RemainingTime;
         progressBar.style.width = `${(progress)}%`;
         if (progress >= 100){
             clearInterval(intervalProgress);
