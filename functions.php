@@ -172,11 +172,14 @@ function generateParametersTable()
 {
     $maxDimension = $maxSquares = $maxSeconds = 0;
     $minDimension = $minSquares = $minSeconds = 99;
+    $colors = [];
 
     $levels = file(__DIR__ . "/levels.cfg"); // __DIR__ is used to get the absolute path of the file.
     foreach ($levels as $level) {
-        list($name, $dimension, $squares, $seconds) = explode(";", $level);
+        list($color, $dimension, $squares, $seconds) = explode(";", $level);
         $dimensionX = explode("x", $dimension)[0]; // GET DIMENSION X 
+
+        array_push($colors, $color);
 
         // DIMENSION TABLE
         if ($maxDimension < $dimensionX) $maxDimension = $dimensionX;
@@ -190,18 +193,24 @@ function generateParametersTable()
         if ($maxSeconds < $seconds) $maxSeconds = $seconds;
         if ($minSeconds > $seconds) $minSeconds = $seconds;
     }
-    return [$minDimension, $maxDimension, $minSquares, $maxSquares, $minSeconds, $maxSeconds];
+    return [$minDimension, $maxDimension, $minSquares, $maxSquares, $minSeconds, $maxSeconds, $colors];
 }
 
 // IF IS CAMPAIGN MODE GENERATE THIS PARAMETERS
 function startCampaignMode($isImposter)
 {
     global $grid, $randomNumbers, $imposterSquares, $normalSquares;
+    global $secondsToShow, $correctColor, $impostorColor;
+
     getLevelFromCode();
     resetLevel();
 
+    $correctColor = ctype_lower($_SESSION['actual_level'][0]);
+    $impostorColor = "red";
+
     $grid = explode('x', $_SESSION['actual_level'][1]);
     $gridTotal = $grid[0] * $grid[1];
+    $secondsToShow = $_SESSION["actual_level"][3];
 
     if ($isImposter) {
         list($imposterSquares, $normalSquares) = impostorAndNormalSquares($_SESSION['actual_level'][2]);
@@ -217,13 +226,15 @@ function startCampaignMode($isImposter)
 function startSurvivalMode($isImposter)
 {
     global $grid, $randomNumbers, $imposterSquares, $normalSquares;
+    global $secondsToShow, $correctColor, $impostorColor;
     list(
         $minDimension,
         $maxDimension,
         $minSquares,
         $maxSquares,
         $minSeconds,
-        $maxSeconds
+        $maxSeconds,
+        $colors,
     ) = generateParametersTable(); // GENERATE TABLE DIMENSION, NUM OF squares AND SECONDS 
 
     $tableNumber = getRandomNumber($minDimension, $maxDimension);
@@ -231,6 +242,11 @@ function startSurvivalMode($isImposter)
 
     $numberOfSquares = getRandomNumber($minSquares, $maxSquares);
     $secondsToShow = getRandomNumber($minSeconds, $maxSeconds);
+
+    // GET RANDOM COLORS
+    $correctColor = $impostorColor = $colors[getRandomNumber(0, sizeof($colors) - 1)];
+    while ($correctColor == $impostorColor)
+        $impostorColor = $colors[getRandomNumber(0, sizeof($colors) - 1)];
 
     $gridTotal = $tableNumber * $tableNumber;
 

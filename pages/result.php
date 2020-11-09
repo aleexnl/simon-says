@@ -5,8 +5,13 @@ require_once('../functions.php');
 
 if (isset($_GET['result'])) {
 
+    //SURVIVAL MODE
+    if ($_SESSION['survivalMode']) {
+        $_SESSION['survivalCountdown'] = $_GET['countdown'] + 5;
+    }
+
     $_SESSION['lvlPoints'] = ceil(rankingResultOperation($_SESSION['actual_level'], $_GET['time']));
-    
+
     if ($_SESSION["actual_level"][5] == 0)
         $_SESSION['points'] = 0;
 
