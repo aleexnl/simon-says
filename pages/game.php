@@ -2,9 +2,8 @@
 <html lang="en">
 <!--
     TODO
-    PONER QUE LOS COLORES DE SURVIVAL MODE SEAN RANDOMS
     CREAR UNA CUENTA ATRAS PERSONALIZADA PARA EL MODO SUPERVIVENCIA
-    EN EL CODE LEVEL ELIMINAR LOS ESPACIOS
+    EN EL CODE LEVEL ELIMINAR LOS ESPACIOS Y PONER UN UPPER CASE
     CREAR SEMINUEVO SISTEMA DE PUNTUACIÓN PARA SURVIVAL
     OCULTAR CODE LEVEL EN VICTORY Y GAMEOVER SI JUEGAS A SURVIVAL
     CREAR NUEVO ARCHIVO PARA EL RANKING DE SURVIVAL
@@ -14,13 +13,13 @@
     HACER RESPONSIVE EL GAME
     REVISAR EL RESPONSIVE DE LAS OTRAS PAGINAS
     CREAR UN SIDEMENU EN RESOLUCION MOBIL (SI DA TIEMPO)
+    EASTER EGG: SI EN EL INPUT CODE INTRODUCE AMONGUS:BLUE EN EL RANKING APARACERA UNA FOTO DE DICHO PERSONAJE, EL NOMBRE Y LA PUNTUACIÓN
 -->
 
 <head>
     <?php session_start(); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $_SESSION["actual_level"][0] ?> Level</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
@@ -37,6 +36,9 @@
 
     if ($isSurvival) startSurvivalMode($isImposter);
     else startCampaignMode($isImposter);
+
+    if ($isSurvival) echo "<title>Survival</title>";
+    else echo "<title>" . $_SESSION["actual_level"][0] . " Level</title>";
 
     ?>
     <audio id="hoverAudio" preload="auto" src="../sounds/hover.wav"></audio>

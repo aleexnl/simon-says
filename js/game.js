@@ -5,7 +5,8 @@ let start_button = document.getElementById("btn-start");
 let correctButtons = document.getElementById("correct-squares"); // get the number of correct squares.
 let showTime = document.getElementById("show-time");
 let time = 0; // Time variable
-let intervalTimer = "";
+let countdown = 0;
+let intervalTimer = intervalCountdown = "";
 let progressCounter = 0;
 let hoverAudio = document.getElementById("hoverAudio");
 let selectAudio = document.getElementById("selectAudio");
@@ -77,6 +78,7 @@ function impostorGame() {
     let impostor = document.getElementsByClassName("impostor"); // Get all solutions
     showSolutions(solutions); // Show solutions
     showImpostor(impostor);
+    progressBar(showTime.innerText);
     resolve_button.setAttribute("disabled", true); // Disable resolve button
     setTimeout(() => {
         // After 4 seconds
@@ -84,6 +86,8 @@ function impostorGame() {
         enableElements(buttons); // enable buttons
         hideSolutions(solutions); // hide solutions
         hideImpostor(impostor);
+        progressBarDisplayNone();
+        showCountDown(15);
         resolve_button.removeAttribute("disabled"); // Enable resolve button
         start_button.setAttribute("disabled", true); // Disable start button
     }, showTime.innerText * 1000);
@@ -122,6 +126,22 @@ for (const button of buttons) {
     };
 }
 
+function showCountDown(time) {
+    countdown = time;
+    let progress = document.getElementById("BarContent");
+    progress.classList.add("countdown");
+    progress.innerHTML = `Countdown: <span>${countdown}</span>`;
+    let countdownSpan = progress.childNodes[1];
+    intervalCountdown = setInterval(() => {
+        countdown--;
+        countdownSpan.innerHTML = countdown;
+        if (countdown <= 5)
+            countdownSpan.classList.add("color-red");
+        if (countdown <= 0)
+            clearInterval(intervalCountdown);
+    }, 1000);
+}
+
 function progressBar(time) {
     let RemainingTime = time;
     let progress = 0; // Initial width of the progress bar.
@@ -131,14 +151,18 @@ function progressBar(time) {
         progress++;
         progressCounter++;
         if (progressCounter >= 100 / time) { // For each 1 second, a second is subtracted from remaining time.
-            progressCounter = 0; 
-            RemainingTime--; 
+            progressCounter = 0;
+            RemainingTime--;
         }
         document.getElementById("timer").innerHTML = RemainingTime;
         progressBar.style.width = `${(progress)}%`;
         if (progress >= 100)
             clearInterval(intervalProgress);
     }, time * 10);
+}
+
+function progressBarDisplayNone() {
+    document.getElementById("Bar").style.display = "none";
 }
 
 function getColor(title) { //DOES NOT WORK

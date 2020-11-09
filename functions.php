@@ -243,6 +243,7 @@ function startSurvivalMode($isImposter)
     $numberOfSquares = getRandomNumber($minSquares, $maxSquares);
     $secondsToShow = getRandomNumber($minSeconds, $maxSeconds);
 
+    // GET RANDOM COLORS
     $correctColor = $impostorColor = $colors[getRandomNumber(0, sizeof($colors) - 1)];
     while ($correctColor == $impostorColor)
         $impostorColor = $colors[getRandomNumber(0, sizeof($colors) - 1)];
