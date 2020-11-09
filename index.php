@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <audio id="hoverAudio" preload="auto" src="sounds/hover.wav"></audio>
-
+    <audio id="selectAudio" preload="auto" src="../sounds/select.wav"></audio>
 </head>
 <?php
 session_start();
 require_once('functions.php');
 $_SESSION["imposterMode"] = false;
+$_SESSION["survivalMode"] =  false;
 $username = isset($_SESSION["user"]) ? $_SESSION["user"] : '';
 if (!isset($_SESSION["actual_level"])) {
     $_SESSION["actual_level"] = get_level(0);
