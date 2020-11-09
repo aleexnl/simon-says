@@ -11,7 +11,10 @@ function get_level($level_number)
 // GET USER AND USER POINTS OF SESSION
 function getUserDetails()
 {
-    return $_SESSION['user'] . ";" . $_SESSION['points'];
+    if ($_SESSION['survivalMode'])
+        return $_SESSION['user'] . ";" . $_SESSION['survivalPoints'];
+    else
+        return $_SESSION['user'] . ";" . $_SESSION['points'];
 }
 
 // WRITE NEW USER IN RANKING FILE
@@ -21,10 +24,10 @@ function writeInRankingFile($userStr)
 }
 
 // READ ALL LINES OF RANKING FILE 
-function reedRankingFile()
+function reedRankingFile($file)
 {
     $users = [];
-    $rankingFile = fopen(__DIR__ . "/ranking.cfg", "r") or die("Unable to open file!");
+    $rankingFile = fopen(__DIR__ . $file, "r") or die("Unable to open file!");
     while (!feof($rankingFile)) {
         $line = fgets($rankingFile);
         if ($line != "") {
@@ -109,6 +112,10 @@ function generateRandomNumbers($limit, $gridTotal, $compareArray = [])
 // SET IMPOSTER MODE ON SESSION AND VARIABLE IN TRUE
 function setImposterModeTrue()
 {
+    // si entro y meto el modo impostor y juego unas partidas si vuelvo al Home
+    // y entro en el juego otra vez sin el impostor activado se tendrian que reiniciar
+    // tanto la puntuacion de campaña y survival. Ahora como distingir si entro de la
+    // Home o de otra pagina?
     if (isset($_POST['imposterMode']) or $_SESSION["imposterMode"]) {
         global $isImposter;
         $isImposter = true;
@@ -119,18 +126,22 @@ function setImposterModeTrue()
 // SET SURVIVAL MODE ON SESSION AND VARIABLE IN TRUE
 function setSurvivalModeTrue()
 {
+    global $isSurvival;
     if (isset($_POST['survivalMode']) or $_SESSION["survivalMode"]) {
-        global $isSurvival;
         $isSurvival = true;
         $_SESSION["survivalMode"] =  true;
     }
 }
 
-//CHANGE USERNAME IN THE SESSION
-function changeUserName()
+//RESET USER DETAILS (USERNAME, MODES, POINTS, ETC.) IN THE SESSION
+function resetUserDetails()
 {
     if (!isset($_SESSION['user'])) {
         $_SESSION['user'] = $_POST["uname"];
+        if ($_SESSION['survivalMode']) {
+            initializeSurvivalPoints();
+            initializeSurvivalCountdown();
+        }
     }
 }
 
@@ -259,26 +270,72 @@ function startSurvivalMode($isImposter)
         $randomNumbers = generateRandomNumbers($numberOfSquares, $gridTotal);
 }
 
+// VELOCITY OF COUNTDOWN IN SURVIVAL MODE
+function setSurvivalCountdownVelocity()
+{
+    if ($_SESSION['survivalPoints'] > 2000)
+        $_SESSION['survivalCountdownVelocity'] = 600;
+    else if ($_SESSION['survivalPoints'] > 1000)
+        $_SESSION['survivalCountdownVelocity'] = 800;
+    else
+        $_SESSION['survivalCountdownVelocity'] = 1000;
+}
+
+// ADD 200 POINTS FOR PASS THE LEVEL IN SURVIVAL MODE
+function addMoreSurvivalPoints()
+{
+    initializeSurvivalPoints();
+    $_SESSION['survivalPoints'] += 200;
+}
+
+// INITIALIZE SURVIVAL POINTS TO 0
+function initializeSurvivalPoints()
+{
+    isset($_SESSION['survivalPoints']) ? '' : $_SESSION['survivalPoints'] = 0;
+}
+
+// INITIALIZE SURVIVAL COUNTDOWN TO 15
+function initializeSurvivalCountdown()
+{
+    isset($_SESSION['survivalCountdown']) ? '' : $_SESSION['survivalCountdown'] = 15;
+}
+
 // SAVE USER POINTS IN THE RANKING FILE
 if (isset($_POST["save"])) {
     session_start();
-    if ($_SESSION['endgame'] == "win")
-        $_SESSION["points"] += $_SESSION["lvlPoints"];
-    file_put_contents(__DIR__ . '/ranking.cfg', getUserDetails() . PHP_EOL, FILE_APPEND | LOCK_EX);
-    $_SESSION["actual_level"] = get_level(0);
+    if ($_SESSION['survivalMode']) {
+        if ($_SESSION['endgame'] == "win")
+            addMoreSurvivalPoints();
+        file_put_contents(__DIR__ . '/survival.cfg', getUserDetails() . PHP_EOL, FILE_APPEND | LOCK_EX);
+        $_SESSION['survivalPoints'] = 0;
+        $_SESSION['survivalCountdown'] = 15;
+        setSurvivalCountdownVelocity();
+    } else {
+        if ($_SESSION['endgame'] == "win")
+            $_SESSION["points"] += $_SESSION["lvlPoints"];
+        file_put_contents(__DIR__ . '/ranking.cfg', getUserDetails() . PHP_EOL, FILE_APPEND | LOCK_EX);
+        $_SESSION["actual_level"] = get_level(0);
+    }
     header("location:pages/ranking.php");
 }
 // PASS TO THE NEXT LEVEL
 if (isset($_POST["next-level"])) {
     session_start();
-    $_SESSION["points"] += $_SESSION["lvlPoints"];
-    $_SESSION["actual_level"][5]++;
-    $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5]);
+    if ($_SESSION['survivalMode']) {
+        $_SESSION['survivalCountdown'] += 5;
+        addMoreSurvivalPoints();
+        setSurvivalCountdownVelocity();
+    } else {
+        $_SESSION["points"] += $_SESSION["lvlPoints"];
+        $_SESSION["actual_level"][5]++;
+        $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5]);
+    }
     header("location:pages/game.php");
 }
 // TRY AGAIN THE SAME LEVEL
 if (isset($_POST["try-again"])) {
     session_start();
-    $_SESSION["actual_level"][6]++;
+    if (!$_SESSION['survivalMode'])
+        $_SESSION["actual_level"][6]++;
     header("location:pages/game.php");
 }

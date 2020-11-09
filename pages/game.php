@@ -30,7 +30,7 @@
 
     setImposterModeTrue();
     setSurvivalModeTrue();
-    changeUserName();
+    resetUserDetails();
 
     if ($isSurvival) startSurvivalMode($isImposter);
     else startCampaignMode($isImposter);
