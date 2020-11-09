@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+    TODO
+    PONER QUE LOS COLORES DE SURVIVAL MODE SEAN RANDOMS
+    CREAR UNA CUENTA ATRAS PERSONALIZADA PARA EL MODO SUPERVIVENCIA
+    EN EL CODE LEVEL ELIMINAR LOS ESPACIOS
+    CREAR SEMINUEVO SISTEMA DE PUNTUACIÓN PARA SURVIVAL
+    OCULTAR CODE LEVEL EN VICTORY Y GAMEOVER SI JUEGAS A SURVIVAL
+    CREAR NUEVO ARCHIVO PARA EL RANKING DE SURVIVAL
+    EN SAVE BTN SI ESTA EN SURVIVAL GUARDAR EN SU ARCHIVO
+    CREAR NUEVO RANKING DE SURVIVAL
+    HACER RESPONSIVE EL RANKING
+    HACER RESPONSIVE EL GAME
+    REVISAR EL RESPONSIVE DE LAS OTRAS PAGINAS
+    CREAR UN SIDEMENU EN RESOLUCION MOBIL (SI DA TIEMPO)
+-->
 
 <head>
     <?php session_start(); ?>
@@ -9,36 +24,33 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <style>
+        .wrong {
+            background-color: red;
+        }
+    </style>
     <?php
-    require_once(__DIR__ . "/../functions.php"); // Import function files
-
-    if (!isset($_SESSION['user'])) {
-        $_SESSION['user'] = $_GET["uname"];
-    }
-
-    if (isset($_SESSION['user'], $_GET["uname"])) {
-        if ($_SESSION['user'] != $_GET["uname"]) {
-            $_SESSION['user'] = $_GET["uname"];
-            $_SESSION["actual_level"] = get_level(0);
-        }
-    }
-    $grid = explode('x', $_SESSION['actual_level'][1]);
-    $grid_total = $grid[0] * $grid[1];
-    $randomCounter = 1;
+    $isSurvival = $isImposter = false;
+    $grid = $imposterSquares = $normalSquares = 0;
     $randomNumbers = [];
+    require_once("../functions.php"); // Import function files
 
-    while (count($randomNumbers) != $_SESSION['actual_level'][2]) {
-        $randomNumber = mt_rand(1, $grid_total);
-        if (!in_array($randomNumber, $randomNumbers)) {
-            array_push($randomNumbers, $randomNumber);
-        }
-    }
+    setImposterModeTrue();
+    setSurvivalModeTrue();
+    changeUserName();
+
+    if ($isSurvival) startSurvivalMode($isImposter);
+    else startCampaignMode($isImposter);
+
     ?>
+    <audio id="hoverAudio" preload="auto" src="../sounds/hover.wav"></audio>
+    <audio id="selectAudio" preload="auto" src="../sounds/select.wav"></audio>
 </head>
 
 <body>
+    <noscript>You need to enable JavaScript in your browser in order to play this game</noscript>
     <header>
-        <a href="../" accesskey="h">
+        <a href="../index.php" accesskey="h">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
@@ -47,44 +59,11 @@
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
     </header>
 
-    <div class="container">
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
-            <h1><?= $_SESSION["actual_level"][0] ?> Level</h1>
-            <h2>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h2>
-            <h3>You have <span id="show-time"><?= $_SESSION["actual_level"][3] ?></span> seconds to memorize the squares.</h3>
-            <div id="BarContent">
-                <div id="Bar">
-                    <div id="Progress">
-                        <div id="timer"></div>
-                    </div> 
-                </div>  
-            </div>
-            <button title="(Alt + P)" id="btn-start" type="submit" accesskey="P">START GAME</button>
-            <button title="(Alt + S)" id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
-            <div class="game">
-                <table>
-                    <tbody>
-                        <?php
-                        for ($rowCounter = 0; $rowCounter < $grid[0]; $rowCounter++) {
-                            echo "<tr>";
-                            for ($columnounter = 0; $columnounter < $grid[1]; $columnounter++) {
-                                if (in_array($randomCounter++, $randomNumbers)) {
-                                    echo "<td><button type='submit' class='square option solution' disabled></button></td>";
-                                } else {
-                                    echo "<td><button type='submit' class='square option' disabled></button></td>";
-                                }
-                            }
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php else : ?>
-            <h1>ERROR</h1>
-            <p>Please, enter a valid username before accesing to the game!</p>
-        <?php endif ?>
-    </div>
+    <?php
+    if ($isSurvival) require("modes/survival.php");
+    else require("modes/campaign.php");
+    ?>
+          
     <script src="../js/game.js"></script>
 </body>
 

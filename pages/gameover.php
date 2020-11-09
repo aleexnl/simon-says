@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/gameover.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <audio id="audio" preload="auto" src="../sounds/lose.wav"></audio>
     <?php
     session_start();
     if ($_SESSION['endgame'] == "win") header("location:victory.php")?>
@@ -15,7 +16,7 @@
 
 <body>
     <header>
-        <a href="../">
+        <a href="../index.php">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php">
@@ -44,6 +45,7 @@
     <footer>
         <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
     </footer>
+    <script src="../js/lose.js"></script>
     <script src="../js/colorblindness.js"></script>
 </body>
 

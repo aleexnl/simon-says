@@ -1,4 +1,5 @@
 let buttons = document.getElementsByClassName("option"); // Get all buttons.
+let uiButtons = document.getElementsByTagName("button");
 let resolve_button = document.getElementById("btn-resolve"); // get resolve button.
 let start_button = document.getElementById("btn-start");
 let correctButtons = document.getElementById("correct-squares"); // get the number of correct squares.
@@ -6,23 +7,25 @@ let showTime = document.getElementById("show-time");
 let time = 0; // Time variable
 let intervalTimer = "";
 let progressCounter = 0;
+let hoverAudio = document.getElementById("hoverAudio");
+let selectAudio = document.getElementById("selectAudio");
 
 function redirectPage(endgame, time) {
     // Redirect to the corresponding result page.
     window.location.href = `./result.php?result=${endgame}&time=${time}`;
 }
 
-function timer() {
-    // Timer for every second.
+function timer(miliseconds) {
+    // Timer for every milisecond passed as arg
     setInterval(() => {
         time++;
-    }, 1000);
+    }, miliseconds);
 }
 
-function enableButtons(buttons) {
+function enableElements(elements) {
     // Enable all buttons from the game board.
-    for (const button of buttons) {
-        button.removeAttribute("disabled");
+    for (const element of elements) {
+        element.removeAttribute("disabled");
     }
 }
 
@@ -40,19 +43,58 @@ function hideSolutions(buttons) {
     }
 }
 
-start_button.onclick = function () {
+function showImpostor(buttons) {
+    // Show all the solutions.
+    for (const button of buttons) {
+        button.classList.add("wrong");
+    }
+}
+
+function hideImpostor(buttons) {
+    // Hide all solutions.
+    for (const button of buttons) {
+        button.classList.remove("wrong");
+    }
+}
+
+function normalGame() {
     let solutions = document.getElementsByClassName("solution"); // Get all solutions
     showSolutions(solutions); // Show solutions
     resolve_button.setAttribute("disabled", true); // Disable resolve button
     progressBar(showTime.innerText);
+    start_button.setAttribute("disabled", true); // Disable start button
     setTimeout(() => {
         // After 4 seconds
-        timer(); // enable timer
-        enableButtons(buttons); // enable buttons
+        timer(1000); // enable timer
+        enableElements(buttons); // enable buttons
         hideSolutions(solutions); // hide solutions
+        resolve_button.removeAttribute("disabled"); // Enable resolve button
+    }, showTime.innerText * 1000);
+}
+
+function impostorGame() {
+    let solutions = document.getElementsByClassName("solution"); // Get all solutions
+    let impostor = document.getElementsByClassName("impostor"); // Get all solutions
+    showSolutions(solutions); // Show solutions
+    showImpostor(impostor);
+    resolve_button.setAttribute("disabled", true); // Disable resolve button
+    setTimeout(() => {
+        // After 4 seconds
+        timer(1000); // enable timer
+        enableElements(buttons); // enable buttons
+        hideSolutions(solutions); // hide solutions
+        hideImpostor(impostor);
         resolve_button.removeAttribute("disabled"); // Enable resolve button
         start_button.setAttribute("disabled", true); // Disable start button
     }, showTime.innerText * 1000);
+}
+
+start_button.onclick = function () {
+    if (!document.getElementById("impostor-squares")) {
+        normalGame();
+    } else {
+        impostorGame();
+    }
 };
 
 resolve_button.onclick = function () {
@@ -80,26 +122,34 @@ for (const button of buttons) {
     };
 }
 
-function progressBar(time){
+function progressBar(time) {
     let RemainingTime = time;
     let progress = 0; // Initial width of the progress bar.
-    var intervalProgress = setInterval(() => { // The width increases in 1% every 10ms*time.
+    var intervalProgress = setInterval(() => {
+        // The width increases in 1% every 10ms*time.
         const progressBar = document.getElementById("Progress");
-        progress ++;
-        progressCounter ++
-        if (progressCounter >= (100/time)) { // For each 1 second, a second is subtracted from remaining time.
+        progress++;
+        progressCounter++;
+        if (progressCounter >= 100 / time) { // For each 1 second, a second is subtracted from remaining time.
             progressCounter = 0; 
-            RemainingTime -= 1; 
+            RemainingTime--; 
         }
         document.getElementById("timer").innerHTML = RemainingTime;
         progressBar.style.width = `${(progress)}%`;
-        if (progress >= 100){
+        if (progress >= 100)
             clearInterval(intervalProgress);
-        }
-    }, time*10);
+    }, time * 10);
 }
 
 function getColor(title) { //DOES NOT WORK
-    let color = title.split(" ")[0];
-    return color;
+    return title.split(" ")[0];
+}
+
+for (const button of uiButtons) {
+    button.addEventListener("mouseover", function (event) {
+        hoverAudio.play();
+    });
+    button.addEventListener("click", function (event) {
+        selectAudio.play();
+    });
 }

@@ -6,10 +6,15 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
+    <audio id="hoverAudio" preload="auto" src="sounds/hover.wav"></audio>
+    <audio id="selectAudio" preload="auto" src="../sounds/select.wav"></audio>
 </head>
 <?php
 session_start();
 require_once('functions.php');
+$_SESSION["imposterMode"] = false;
+$_SESSION["survivalMode"] =  false;
+$username = isset($_SESSION["user"]) ? $_SESSION["user"] : '';
 if (!isset($_SESSION["actual_level"])) {
     $_SESSION["actual_level"] = get_level(0);
 }
@@ -43,15 +48,27 @@ if (!isset($_SESSION["actual_level"])) {
             <h3>Complete all the levels in the shortest time to score more points!</h3>
         </div>
 
-        <form id="form" action="pages/game.php" method="GET">
-            <label for="uname">
-                <h1>USERNAME</h1>
-            </label>
-            <input class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $_SESSION['user'] ?>" required>
+        <form id="form" action="pages/game.php" method="POST">
+            <div class="form-option">
+                <label for="uname">
+                    <h2>Username</h2>
+                </label>
+                <input title="(Alt + U)" class="input-box" type="text" placeholder="Es el rosa" name="uname" value="<?= $username ?>" required accesskey="U" />
+                <input title="(Alt + C)" class="input-box input-code-lvl" type="text" placeholder="Code lvl" name="code" accesskey="C" />
+            </div>
+            <div class="form-option">
+                <label for="imposterMode">Enable Imposter mode</label>
+                <input type="checkbox" name="imposterMode" id="imposterMode">
+            </div>
+            <div class="form-option">
+                <label for="survivalMode">Enable Survival mode</label>
+                <input type="checkbox" name="survivalMode" id="survivalMode">
+            </div>
             <br>
             <button type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>
         </form>
     </div>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
