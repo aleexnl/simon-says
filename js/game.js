@@ -14,7 +14,10 @@ let selectAudio = document.getElementById("selectAudio");
 
 function redirectPage(endgame, time) {
     // Redirect to the corresponding result page.
-    window.location.href = `./result.php?result=${endgame}&time=${time}`;
+    if (document.title == "Survival")
+        window.location.href = `./result.php?result=${endgame}&time=${time}&countdown=${countdown}`;
+    else
+        window.location.href = `./result.php?result=${endgame}&time=${time}`;
 }
 
 function timer(milliseconds) {
@@ -87,8 +90,10 @@ function impostorGame() {
         enableElements(buttons); // enable buttons
         hideSolutions(solutions); // hide solutions
         hideImpostor(impostor);
-        progressBarDisplayNone();
-        showCountDown(15);
+        if (document.title == "Survival") {
+            progressBarDisplayNone();
+            showCountDown(document.getElementById("countdown").innerHTML);
+        }
         resolve_button.removeAttribute("disabled"); // Enable resolve button
         start_button.setAttribute("disabled", true); // Disable start button
     }, showTime.innerText * 1000);
@@ -110,7 +115,7 @@ resolve_button.onclick = function () {
             solution.length == correctButtons.innerText &&
             selectedButtons.length == correctButtons.innerText
         ) {
-            redirectPage("win", time, countdown);
+            redirectPage("win", time);
         } else {
             updateCountdown();
         }
