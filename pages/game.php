@@ -57,6 +57,11 @@
             <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
+        <label class="switch">
+            <input id="chBox" type="checkbox" onclick='colorControl();'>
+            <span class="slider round"></span>
+        </label>
+        <h2>Colorblind mode</h2>
     </header>
 
     <?php
@@ -65,6 +70,7 @@
     ?>
           
     <script src="../js/game.js"></script>
+    <script src="../js/colorblindness.js"></script>
 </body>
 
 </html>
