@@ -24,7 +24,7 @@
             </div>
         </div>
         <button title="(Alt + P)" id="btn-start" type="submit" accesskey="P">START GAME</button>
-        <button title="(Alt + S)" id="btn-resolve" type="submit" accesskey="S">SOLVE</button>
+        <button title="(Alt + S)" id="btn-resolve" type="submit" accesskey="S" disabled>SOLVE</button>
         <div class="game">
             <table>
                 <tbody>

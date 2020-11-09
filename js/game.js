@@ -8,6 +8,7 @@ let time = 0; // Time variable
 let countdown = 0;
 let intervalTimer = intervalCountdown = "";
 let progressCounter = 0;
+let countdownSpan = "";
 let hoverAudio = document.getElementById("hoverAudio");
 let selectAudio = document.getElementById("selectAudio");
 
@@ -16,11 +17,11 @@ function redirectPage(endgame, time) {
     window.location.href = `./result.php?result=${endgame}&time=${time}`;
 }
 
-function timer(miliseconds) {
+function timer(milliseconds) {
     // Timer for every milisecond passed as arg
-    setInterval(() => {
+    intervalTimer = setInterval(() => {
         time++;
-    }, miliseconds);
+    }, milliseconds);
 }
 
 function enableElements(elements) {
@@ -104,14 +105,25 @@ start_button.onclick = function () {
 resolve_button.onclick = function () {
     let solution = document.getElementsByClassName("selected solution");
     let selectedButtons = document.getElementsByClassName("selected");
-    clearInterval(intervalTimer);
-    if (
-        solution.length == correctButtons.innerText &&
-        selectedButtons.length == correctButtons.innerText
-    ) {
-        redirectPage("win", time);
+    if (document.title == "Survival") {
+        if (
+            solution.length == correctButtons.innerText &&
+            selectedButtons.length == correctButtons.innerText
+        ) {
+            redirectPage("win", time, countdown);
+        } else {
+            updateCountdown();
+        }
     } else {
-        redirectPage("lose", time);
+        clearInterval(intervalTimer);
+        if (
+            solution.length == correctButtons.innerText &&
+            selectedButtons.length == correctButtons.innerText
+        ) {
+            redirectPage("win", time);
+        } else {
+            redirectPage("lose", time);
+        }
     }
 };
 
@@ -131,15 +143,21 @@ function showCountDown(time) {
     let progress = document.getElementById("BarContent");
     progress.classList.add("countdown");
     progress.innerHTML = `Countdown: <span>${countdown}</span>`;
-    let countdownSpan = progress.childNodes[1];
+    countdownSpan = progress.childNodes[1];
     intervalCountdown = setInterval(() => {
-        countdown--;
-        countdownSpan.innerHTML = countdown;
-        if (countdown <= 5)
-            countdownSpan.classList.add("color-red");
-        if (countdown <= 0)
-            clearInterval(intervalCountdown);
+        updateCountdown();
     }, 1000);
+}
+
+function updateCountdown() {
+    countdown--;
+    countdownSpan.innerHTML = countdown;
+    if (countdown <= 5)
+        countdownSpan.classList.add("color-red");
+    if (countdown <= 0) {
+        clearInterval(intervalCountdown);
+        redirectPage("lose", time);
+    }
 }
 
 function progressBar(time) {
