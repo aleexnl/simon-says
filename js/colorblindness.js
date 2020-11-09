@@ -1,10 +1,7 @@
-let colorSwitch = document.getElementById("chBox");
-colorSwitch.onclick = colorControl();
-
 function colorControl() {
-    console.log(colorSwitch);
+    let colorSwitch = document.getElementById("chBox");
+    console.log(colorSwitch.checked);
     if (colorSwitch.checked == true){
-        console.log(colorSwitch);
         document.getElementById("title").style.color = "#a48100";
         document.getElementsByClassName("box")[0].style.backgroundColor = "#a88500";
     } else {
