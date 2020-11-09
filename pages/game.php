@@ -63,6 +63,7 @@
     if ($isSurvival) require("modes/survival.php");
     else require("modes/campaign.php");
     ?>
+          
     <script src="../js/game.js"></script>
 </body>
 
