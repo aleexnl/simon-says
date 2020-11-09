@@ -24,14 +24,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
-    <style>
-        .wrong {
-            background-color: red;
-        }
-    </style>
     <?php
     $isSurvival = $isImposter = false;
-    $grid = $imposterSquares = $normalSquares = 0;
+    $grid = $imposterSquares = $normalSquares = $secondsToShow = 0;
+    $correctColor = $impostorColor = "";
     $randomNumbers = [];
     require_once("../functions.php"); // Import function files
 
