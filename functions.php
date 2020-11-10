@@ -12,9 +12,9 @@ function get_level($level_number)
 function getUserDetails()
 {
     if ($_SESSION['survivalMode'])
-        return $_SESSION['user'] . ";" . $_SESSION['survivalPoints'];
+        return $_SESSION['easterEggColor'] . ";" . $_SESSION['user'] . ";" . $_SESSION['survivalPoints'];
     else
-        return $_SESSION['user'] . ";" . $_SESSION['points'];
+        return $_SESSION['easterEggColor'] . ";" . $_SESSION['user'] . ";" . $_SESSION['points'];
 }
 
 // WRITE NEW USER IN RANKING FILE
@@ -183,7 +183,8 @@ function getLevelFromCode()
 {
     if (isset($_POST['code'])) {
         $code = strtoupper(str_replace(" ", "", $_POST['code']));
-        checkEasterEgg($code);
+        if (checkEasterEgg($code))
+            $code = explode(":", $code)[1];
         for ($index = 0; $index < 10; $index++) {
             $lvl = get_level($index);
             $lvlCode = str_replace("\n", "", get_level($index)[4]);
@@ -211,7 +212,8 @@ function checkEasterEgg($code)
             $_SESSION['easterEggColor'] = strtolower($character);
         else
             $_SESSION['easterEggColor'] = "none";
-    }
+        return true;
+    } else return false;
 }
 
 // CHANGE USERNAME AND PUT LEVEL TO 0
