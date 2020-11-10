@@ -177,12 +177,11 @@ function setUsername()
 function getLevelFromCode()
 {
     if (isset($_POST['code'])) {
-        $code = str_replace(" ", "", $_POST['code']);
+        $code = strtoupper(str_replace(" ", "", $_POST['code']));
         for ($index = 0; $index < 10; $index++) {
             $lvl = get_level($index);
             $lvlCode = str_replace("\n", "", get_level($index)[4]);
             if ($lvlCode == $code) {
-                // RESETEAR LA PUNTUACION
                 $_SESSION['actual_level'] = $lvl;
                 $_SESSION["points"] = 0;
                 $_SESSION["lvlPoints"] = 0;

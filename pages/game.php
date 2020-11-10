@@ -2,7 +2,6 @@
 <html lang="en">
 <!--
     TODO
-    EN EL CODE LEVEL ELIMINAR LOS ESPACIOS Y PONER UN UPPER CASE
     HACER RESPONSIVE EL RANKING
     HACER RESPONSIVE EL GAME
     REVISAR EL RESPONSIVE DE LAS OTRAS PAGINAS
@@ -37,8 +36,6 @@
 
     if ($isSurvival) echo "<title>Survival</title>";
     else echo "<title>" . $_SESSION["actual_level"][0] . " Level</title>";
-    
-    print_r($_SESSION);
     ?>
     <audio id="hoverAudio" preload="auto" src="../sounds/hover.wav"></audio>
     <audio id="selectAudio" preload="auto" src="../sounds/select.wav"></audio>
