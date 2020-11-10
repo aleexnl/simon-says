@@ -99,7 +99,6 @@ function createImposterBoard($grid, $numbers, $imposterNumbers)
 // GENERATE RANDOM NUMBER FOR THE TABLE
 function generateRandomNumbers($limit, $gridTotal, $compareArray = [])
 {
-    // REVISAR ESTO SE QUEDA PILLADO DE VEZ EN CUANDO
     $numbers = [];
     while (count($numbers) != $limit) {
         $randomNumber = mt_rand(1, $gridTotal);
