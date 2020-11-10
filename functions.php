@@ -31,8 +31,8 @@ function reedRankingFile($file)
     while (!feof($rankingFile)) {
         $line = fgets($rankingFile);
         if ($line != "") {
-            list($user, $punctuation) = explode(";", $line);
-            array_push($users, array("user" => $user, "punctuation" => intval($punctuation)));
+            list($color, $user, $points) = explode(";", $line);
+            array_push($users, array("color" => $color, "user" => $user, "points" => intval($points)));
         }
     }
     return $users;
@@ -211,8 +211,6 @@ function checkEasterEgg($code)
             $_SESSION['easterEggColor'] = strtolower($character);
         else
             $_SESSION['easterEggColor'] = "none";
-
-        echo $_SESSION['easterEggColor'];
     }
 }
 
@@ -353,6 +351,57 @@ function initializeSurvivalPoints()
 function initializeSurvivalCountdown()
 {
     isset($_SESSION['survivalCountdown']) ? '' : $_SESSION['survivalCountdown'] = 15;
+}
+
+// GET IMAGE COLOR FOR THE RANKING
+function getImageColor($color)
+{
+    if ($color == "none") return "";
+    else return "<img src='../img/colors/$color.png' alt='$color' />";
+}
+
+// CREATE TABLE USERS FOR THE RANKING PAGE
+function createRankingTable($users)
+{
+    return ("
+    <table cellspacing='0' cellpadding='0'>
+    <thead>" . getHeaderTable() . "</thead> 
+    <tbody>" . getUsersRanking($users) . "</tbody>
+    </table>");
+}
+
+function getHeaderTable()
+{
+    return ("
+    <tr class='first-table-cell'>
+        <td>
+            <p class='width-username table-title'>User</p>
+        </td>
+        <td>
+            <p class='width-points table-title'>Points</p>
+        </td>
+    </tr>
+    ");
+}
+
+function getUsersRanking($array)
+{
+    $users = "";
+    foreach ($array as $user) {
+        $users .= ("
+        <tr>
+            <td style='display: flex; flex-flow: row;'>
+                <div class='image-box'>
+                    " . getImageColor($user['color']) . "
+                </div>
+                <p class='username'>" . $user['user'] . "</p>
+            </td>
+            <td>
+                <p class='points'>" . $user['points'] . "</p>
+            </td>
+        </tr>");
+    }
+    return $users;
 }
 
 // SAVE USER POINTS IN THE RANKING FILE

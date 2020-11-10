@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranking</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -12,11 +13,11 @@
     require_once("../functions.php");
     $usersCampaign = reedRankingFile("/ranking.cfg");
     usort($usersCampaign, function ($item1, $item2) {
-        return $item2['punctuation'] <=> $item1['punctuation'];
+        return $item2['points'] <=> $item1['points'];
     });
     $usersSurvival = reedRankingFile("/survival.cfg");
     usort($usersSurvival, function ($item1, $item2) {
-        return $item2['punctuation'] <=> $item1['punctuation'];
+        return $item2['points'] <=> $item1['points'];
     });
     ?>
 </head>
@@ -33,59 +34,15 @@
             <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
         <?php endif ?>
     </header>
-    <h1 class="title">Ranking</h1>
-    <table cellspacing="0" cellpadding="0">
-        <thead>
-            <tr class="first-table-cell">
-                <td>
-                    <p class="width-username table-title">User</p>
-                </td>
-                <td>
-                    <p class="width-points table-title">Points</p>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($usersCampaign as $user) {
-                echo "<tr>";
-                echo "<td>";
-                echo "<p class='username'>" . $user['user'] . "</p>";
-                echo "</td>";
-                echo "<td>";
-                echo "<p class='points'>" . $user['punctuation'] . "</p>";
-                echo "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-    <table cellspacing="0" cellpadding="0">
-        <thead>
-            <tr class="first-table-cell">
-                <td>
-                    <p class="width-username table-title">User</p>
-                </td>
-                <td>
-                    <p class="width-points table-title">Points</p>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($usersSurvival as $user) {
-                echo "<tr>";
-                echo "<td>";
-                echo "<p class='username'>" . $user['user'] . "</p>";
-                echo "</td>";
-                echo "<td>";
-                echo "<p class='points'>" . $user['punctuation'] . "</p>";
-                echo "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+    <h1 class="title">Rankings</h1>
+    <div class="ranking-box">
+        <h2 class="subtitle">Campaign</h2>
+        <?= createRankingTable($usersCampaign) ?>
+    </div>
+    <div class="ranking-box">
+        <h2 class="subtitle">Survival</h2>
+        <?= createRankingTable($usersSurvival) ?>
+    </div>
 </body>
 
 </html>
