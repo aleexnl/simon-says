@@ -125,6 +125,7 @@ function resetPoints()
 // SET IMPOSTER MODE ON SESSION AND VARIABLE IN TRUE OR FALSE
 function setImposterModeTrue()
 {
+    global $isImposter;
     if (isset($_POST['page']) && !isset($_POST['imposterMode']) && $_SESSION['imposterMode']) {
         // NEW GAME WITHOUT IMPOSTOR
         $_SESSION["imposterMode"] =  false;
@@ -132,10 +133,14 @@ function setImposterModeTrue()
     }
     if (isset($_POST['page']) && isset($_POST['imposterMode']) && !$_SESSION['imposterMode']) {
         // NEW GAME WITH IMPOSTOR
-        global $isImposter;
         $isImposter = true;
         $_SESSION["imposterMode"] =  true;
         resetPoints();
+    }
+    if (isset($_POST['survivalMode']) or $_SESSION["survivalMode"]) {
+        // FOLLOW WITH THE SAME IMPOSTER MODE
+        $isImposter = true;
+        $_SESSION["imposterMode"] =  true;
     }
 }
 

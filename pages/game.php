@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php
+    if (!isset($_SESSION['imposterMode']) || !isset($_SESSION['survivalMode']))
+        header('location:../');
+    if (!isset($_SESSION['survivalCountdown'])) $_SESSION['survivalCountdown'] = 15;
     $isSurvival = $isImposter = false;
     $grid = $imposterSquares = $normalSquares = $secondsToShow = 0;
     $correctColor = $impostorColor = "";

@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simon-says</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -12,6 +13,8 @@
 <?php
 session_start();
 require_once('functions.php');
+if (!isset($_SESSION['imposterMode'])) $_SESSION['imposterMode'] = false;
+if (!isset($_SESSION['survivalMode'])) $_SESSION['survivalMode'] = false;
 $username = isset($_SESSION["user"]) ? $_SESSION["user"] : '';
 if (!isset($_SESSION["actual_level"])) {
     $_SESSION["imposterMode"] = false;
