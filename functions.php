@@ -184,6 +184,8 @@ function getLevelFromCode()
             if ($lvlCode == $code) {
                 // RESETEAR LA PUNTUACION
                 $_SESSION['actual_level'] = $lvl;
+                $_SESSION["points"] = 0;
+                $_SESSION["lvlPoints"] = 0;
                 break;
             }
         }
@@ -346,7 +348,7 @@ if (isset($_POST["save"])) {
             $_SESSION["points"] += $_SESSION["lvlPoints"];
         file_put_contents(__DIR__ . '/ranking.cfg', getUserDetails() . PHP_EOL, FILE_APPEND | LOCK_EX);
         $_SESSION["actual_level"] = get_level(0);
-        $_SESSION["points"] = 0; 
+        $_SESSION["points"] = 0;
         $_SESSION["lvlPoints"] = 0;
     }
     header("location:pages/ranking.php");
