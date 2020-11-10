@@ -122,7 +122,7 @@ function resetPoints()
     }
 }
 
-// SET IMPOSTER MODE ON SESSION AND VARIABLE IN TRUE
+// SET IMPOSTER MODE ON SESSION AND VARIABLE IN TRUE OR FALSE
 function setImposterModeTrue()
 {
     if (isset($_POST['page']) && !isset($_POST['imposterMode']) && $_SESSION['imposterMode']) {
@@ -143,7 +143,19 @@ function setImposterModeTrue()
 function setSurvivalModeTrue()
 {
     global $isSurvival;
+    if (isset($_POST['page']) && !isset($_POST['survivalMode']) && $_SESSION['survivalMode']) {
+        // NEW GAME WITH CAMPAIGN MODE
+        $_SESSION["survivalMode"] =  false;
+        resetPoints();
+    }
+    if (isset($_POST['page']) && isset($_POST['survivalMode']) && !$_SESSION['survivalMode']) {
+        // NEW GAME WITH SURVIVE MODE
+        $isSurvival = true;
+        $_SESSION["survivalMode"] =  true;
+        resetPoints();
+    }
     if (isset($_POST['survivalMode']) or $_SESSION["survivalMode"]) {
+        // FOLLOW WITH THE SAME SURVIVAL MODE
         $isSurvival = true;
         $_SESSION["survivalMode"] =  true;
     }
@@ -164,12 +176,13 @@ function setUsername()
 // GET SPECIFIED LEVEL WITH THE CODE LEVEL
 function getLevelFromCode()
 {
-    /* QUITAR LOS ESPACIOS DEL INPUT DEL CODE */
     if (isset($_POST['code'])) {
+        $code = str_replace(" ", "", $_POST['code']);
         for ($index = 0; $index < 10; $index++) {
             $lvl = get_level($index);
             $lvlCode = str_replace("\n", "", get_level($index)[4]);
-            if ($lvlCode == $_POST['code']) {
+            if ($lvlCode == $code) {
+                // RESETEAR LA PUNTUACION
                 $_SESSION['actual_level'] = $lvl;
                 break;
             }
@@ -333,6 +346,8 @@ if (isset($_POST["save"])) {
             $_SESSION["points"] += $_SESSION["lvlPoints"];
         file_put_contents(__DIR__ . '/ranking.cfg', getUserDetails() . PHP_EOL, FILE_APPEND | LOCK_EX);
         $_SESSION["actual_level"] = get_level(0);
+        $_SESSION["points"] = 0; 
+        $_SESSION["lvlPoints"] = 0;
     }
     header("location:pages/ranking.php");
 }
