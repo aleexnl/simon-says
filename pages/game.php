@@ -31,6 +31,8 @@
     setUsername();
     resetDetails();
 
+    getLevelFromCode();
+
     if ($_SESSION['survivalCountdown'] <= 0)
         resetPoints();
 

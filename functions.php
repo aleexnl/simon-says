@@ -183,6 +183,7 @@ function getLevelFromCode()
 {
     if (isset($_POST['code'])) {
         $code = strtoupper(str_replace(" ", "", $_POST['code']));
+        checkEasterEgg($code);
         for ($index = 0; $index < 10; $index++) {
             $lvl = get_level($index);
             $lvlCode = str_replace("\n", "", get_level($index)[4]);
@@ -193,6 +194,25 @@ function getLevelFromCode()
                 break;
             }
         }
+    }
+}
+
+// CHECK IF USER USE THE EASTER EGG
+function checkEasterEgg($code)
+{
+    $numbersToVocals = [["4", "A"], ["3", "E"], ["1", "I"], ["0", "O"]];
+    $colors = ["BLACK", "BLUE", "BROWN", "CYAN", "GREEN", "LIME", "ORANGE", "PINK", "PURPLE", "RED", "WHITE", "YELLOW"];
+    if (substr($code, 0, 8) == "AMONGUS:") {
+        list($text, $character) = explode(":", $code);
+        foreach ($numbersToVocals as $value) {
+            $character = str_replace($value[0], $value[1], $character);
+        }
+        if (in_array($character, $colors))
+            $_SESSION['easterEggColor'] = strtolower($character);
+        else
+            $_SESSION['easterEggColor'] = "none";
+
+        echo $_SESSION['easterEggColor'];
     }
 }
 
@@ -247,8 +267,6 @@ function startCampaignMode($isImposter)
 {
     global $grid, $randomNumbers, $imposterSquares, $normalSquares;
     global $secondsToShow, $correctColor, $impostorColor;
-
-    getLevelFromCode();
 
     $correctColor = ctype_lower($_SESSION['actual_level'][0]);
     $impostorColor = "red";
