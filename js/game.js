@@ -73,6 +73,10 @@ function normalGame() {
         timer(1000); // enable timer
         enableElements(buttons); // enable buttons
         hideSolutions(solutions); // hide solutions
+        if (document.title == "Survival") {
+            progressBarDisplayNone();
+            showCountDown(document.getElementById("countdown").innerHTML);
+        }
         resolve_button.removeAttribute("disabled"); // Enable resolve button
     }, showTime.innerText * 1000);
 }
@@ -151,7 +155,7 @@ function showCountDown(time) {
     countdownSpan = progress.childNodes[1];
     intervalCountdown = setInterval(() => {
         updateCountdown();
-    }, 1000);
+    }, document.getElementById("countdownVelocity").innerHTML);
 }
 
 function updateCountdown() {

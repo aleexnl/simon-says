@@ -3,10 +3,6 @@
 <!--
     TODO
     EN EL CODE LEVEL ELIMINAR LOS ESPACIOS Y PONER UN UPPER CASE
-    CREAR SEMINUEVO SISTEMA DE PUNTUACIÓN PARA SURVIVAL
-    OCULTAR CODE LEVEL EN VICTORY Y GAMEOVER SI JUEGAS A SURVIVAL
-    EN SAVE BTN SI ESTA EN SURVIVAL GUARDAR EN SU ARCHIVO
-    CREAR NUEVO RANKING DE SURVIVAL
     HACER RESPONSIVE EL RANKING
     HACER RESPONSIVE EL GAME
     REVISAR EL RESPONSIVE DE LAS OTRAS PAGINAS
@@ -30,7 +26,11 @@
 
     setImposterModeTrue();
     setSurvivalModeTrue();
-    changeUserName();
+    setUsername();
+    resetDetails();
+
+    if ($_SESSION['survivalCountdown'] <= 0)
+        resetPoints();
 
     if ($isSurvival) startSurvivalMode($isImposter);
     else startCampaignMode($isImposter);
@@ -64,7 +64,7 @@
     if ($isSurvival) require("modes/survival.php");
     else require("modes/campaign.php");
     ?>
-          
+
     <script src="../js/game.js"></script>
     <script src="../js/colorblindness.js"></script>
 </body>

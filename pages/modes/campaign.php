@@ -26,18 +26,15 @@
             <table>
                 <tbody>
                     <?php
-                    print_r($grid);
-                    if (!$isImposter) {
+                    if (!$isImposter)
                         createNormalBoard($grid, $randomNumbers);
-                    } else {
+                    else
                         createImposterBoard($grid, $randomNumbers[0], $randomNumbers[1]);
-                    }
                     ?>
                 </tbody>
             </table>
         </div>
-    <?php else : ?>
-        <h1>ERROR</h1>
-        <p>Please, enter a valid username before accessing to the game!</p>
-    <?php endif ?>
+    <?php else :
+        header("location:../");
+    endif ?>
 </div>

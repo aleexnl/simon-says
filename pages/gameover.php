@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <a href="../index.php">
+        <a href="../">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php">
@@ -43,9 +43,11 @@
             <input title="(Alt + S)" type="submit" name="save" value="Save points" accesskey="S" />
         </form>
     </div>
-    <footer>
-        <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
-    </footer>
+    <?php if (!$_SESSION['survivalMode']) : ?>
+        <footer>
+            <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
+        </footer>
+    <?php endif; ?>
     <script src="../js/lose.js"></script>
 </body>
 
