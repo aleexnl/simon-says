@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simon-says</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -12,10 +13,12 @@
 <?php
 session_start();
 require_once('functions.php');
-$_SESSION["imposterMode"] = false;
-$_SESSION["survivalMode"] =  false;
+if (!isset($_SESSION['imposterMode'])) $_SESSION['imposterMode'] = false;
+if (!isset($_SESSION['survivalMode'])) $_SESSION['survivalMode'] = false;
 $username = isset($_SESSION["user"]) ? $_SESSION["user"] : '';
 if (!isset($_SESSION["actual_level"])) {
+    $_SESSION["imposterMode"] = false;
+    $_SESSION["survivalMode"] =  false;
     $_SESSION["actual_level"] = get_level(0);
 }
 ?>
@@ -49,6 +52,7 @@ if (!isset($_SESSION["actual_level"])) {
         </div>
 
         <form id="form" action="pages/game.php" method="POST">
+            <input type="hidden" name="page" value="index">
             <div class="form-option">
                 <label for="uname">
                     <h2>Username</h2>
@@ -58,11 +62,19 @@ if (!isset($_SESSION["actual_level"])) {
             </div>
             <div class="form-option">
                 <label for="imposterMode">Enable Imposter mode</label>
-                <input type="checkbox" name="imposterMode" id="imposterMode">
+                <?php if ($_SESSION['imposterMode']) : ?>
+                    <input type="checkbox" name="imposterMode" checked id="imposterMode">
+                <?php else : ?>
+                    <input type="checkbox" name="imposterMode" id="imposterMode">
+                <?php endif; ?>
             </div>
             <div class="form-option">
                 <label for="survivalMode">Enable Survival mode</label>
-                <input type="checkbox" name="survivalMode" id="survivalMode">
+                <?php if ($_SESSION['survivalMode']) : ?>
+                    <input type="checkbox" name="survivalMode" checked id="survivalMode">
+                <?php else : ?>
+                    <input type="checkbox" name="survivalMode" id="survivalMode">
+                <?php endif; ?>
             </div>
             <br>
             <button type="submit" value="Start game" href="index.html" accesskey="P"><i class="fas fa-play"></i> PLAY</button>

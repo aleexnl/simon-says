@@ -2,11 +2,6 @@
 <html lang="en">
 <!--
     TODO
-    EN EL CODE LEVEL ELIMINAR LOS ESPACIOS Y PONER UN UPPER CASE
-    CREAR SEMINUEVO SISTEMA DE PUNTUACIÓN PARA SURVIVAL
-    OCULTAR CODE LEVEL EN VICTORY Y GAMEOVER SI JUEGAS A SURVIVAL
-    EN SAVE BTN SI ESTA EN SURVIVAL GUARDAR EN SU ARCHIVO
-    CREAR NUEVO RANKING DE SURVIVAL
     HACER RESPONSIVE EL RANKING
     HACER RESPONSIVE EL GAME
     REVISAR EL RESPONSIVE DE LAS OTRAS PAGINAS
@@ -22,6 +17,9 @@
     <link rel="stylesheet" href="../css/game.css">
     <script src="https://kit.fontawesome.com/b17b075250.js" crossorigin="anonymous"></script>
     <?php
+    if (!isset($_SESSION['imposterMode']) || !isset($_SESSION['survivalMode']))
+        header('location:../');
+    if (!isset($_SESSION['survivalCountdown'])) $_SESSION['survivalCountdown'] = 15;
     $isSurvival = $isImposter = false;
     $grid = $imposterSquares = $normalSquares = $secondsToShow = 0;
     $correctColor = $impostorColor = "";
@@ -30,14 +28,17 @@
 
     setImposterModeTrue();
     setSurvivalModeTrue();
-    changeUserName();
+    setUsername();
+    resetDetails();
+
+    if ($_SESSION['survivalCountdown'] <= 0)
+        resetPoints();
 
     if ($isSurvival) startSurvivalMode($isImposter);
     else startCampaignMode($isImposter);
 
     if ($isSurvival) echo "<title>Survival</title>";
     else echo "<title>" . $_SESSION["actual_level"][0] . " Level</title>";
-
     ?>
     <audio id="hoverAudio" preload="auto" src="../sounds/hover.wav"></audio>
     <audio id="selectAudio" preload="auto" src="../sounds/select.wav"></audio>
@@ -64,7 +65,7 @@
     if ($isSurvival) require("modes/survival.php");
     else require("modes/campaign.php");
     ?>
-          
+
     <script src="../js/game.js"></script>
     <script src="../js/colorblindness.js"></script>
 </body>

@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <a href="../" accesskey="H">
+        <a href="../functions.php?goHome=home" accesskey="H">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php" accesskey="T">
@@ -33,8 +33,8 @@
     <p id="title">Victory</p>
     <div class="box">
         <p id="text">You completed the <?= $_SESSION["actual_level"][0] ?> level.</p>
-        <form action="../" method="post" id="form-home">
-            <input title="(Alt + H)" type="submit" value="Home" accesskey="H" />
+        <form action="../functions.php" method="post" id="form-home">
+            <input title="(Alt + H)" type="submit" name="home" value="Home" accesskey="H" />
         </form>
         <form action="../functions.php" method="post" id="form-try-again">
             <input title="(Alt + R)" type="submit" name="try-again" value="Try Again" accesskey="R" />
@@ -46,9 +46,11 @@
             <input title="(Alt + S)" type="submit" name="save" value="Save points" accesskey="S" />
         </form>
     </div>
-    <footer>
-        <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
-    </footer>
+    <?php if (!$_SESSION['survivalMode']) : ?>
+        <footer>
+            <p class="level-code">Code: <strong><?= $_SESSION['actual_level'][4] ?></strong></p>
+        </footer>
+    <?php endif; ?>
     <script src="../js/win.js"></script>
 </body>
 
