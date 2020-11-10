@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <a href="../index.php">
+        <a href="../">
             <h2 title="(Alt + H)"><i class="fas fa-home"></i> HOME</h2>
         </a>
         <a href="./ranking.php">

@@ -12,10 +12,10 @@
 <?php
 session_start();
 require_once('functions.php');
-$_SESSION["imposterMode"] = false;
 $_SESSION["survivalMode"] =  false;
 $username = isset($_SESSION["user"]) ? $_SESSION["user"] : '';
 if (!isset($_SESSION["actual_level"])) {
+    $_SESSION["imposterMode"] = false;
     $_SESSION["actual_level"] = get_level(0);
 }
 ?>
@@ -49,6 +49,7 @@ if (!isset($_SESSION["actual_level"])) {
         </div>
 
         <form id="form" action="pages/game.php" method="POST">
+            <input type="hidden" name="page" value="index">
             <div class="form-option">
                 <label for="uname">
                     <h2>Username</h2>

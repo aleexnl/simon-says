@@ -15,7 +15,7 @@
         <p style="display: none"><?= $_SESSION['survivalPoints'] ?></p>
         <h1>Survival</h1>
         <?php if (!$isImposter) : ?>
-            <h3>Select the <span id="correct-squares"><?= $_SESSION['actual_level'][2] ?></span> correct squares</h3>
+            <h3>Select the <span id="correct-squares"><?= $normalSquares ?></span> <span style="<?= "color: $correctColor" ?>" id="correct-color"><?= $correctColor ?></span> correct squares.</h3>
         <?php else : ?>
             <h2>ATTENTION CREWMATE! There are <span id="impostor-squares"><?= $imposterSquares ?></span> <span style="<?= "color: $impostorColor" ?>" id="impostor-color"><?= $impostorColor ?></span> impostor squares among us!</h2>
             <h3>Select the <span id="correct-squares"><?= $normalSquares ?></span> correct squares with the color <span style="<?= "color: $correctColor" ?>" id="correct-color"><?= $correctColor ?></span>.</h3>
