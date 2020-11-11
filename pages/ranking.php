@@ -40,7 +40,7 @@
         <?= createRankingTable($usersCampaign) ?>
     </div>
     <div class="ranking-box">
-        <h2 class="subtitle">Survival</h2>
+        <h2 class="subtitle survival">Survival</h2>
         <?= createRankingTable($usersSurvival) ?>
     </div>
 </body>

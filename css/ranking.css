@@ -62,6 +62,7 @@ p.width-username {
 
 p.width-points {
     width: 200px;
+    margin: auto;
 }
 
 .table-title {
@@ -88,4 +89,41 @@ div.image-box img {
 .points {
     text-align: center;
     font-size: 17px;
+}
+
+@media (max-width: 1400px) {
+    p.width-username {
+        width: 10em;
+    }
+
+    p.width-points {
+        width: 5em;
+    }
+}
+
+@media (max-width: 1050px) {
+    p.width-username {
+        width: 7em;
+    }
+
+    p.width-points {
+        width: 3em;
+    }
+}
+
+@media (max-width: 800px) {
+    table {
+        width: 100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;
+    }
+
+    .ranking-box {
+        width: 90%;
+        margin: auto;
+    }
+
+    .survival {
+        margin-top: 0.5em !important;
+    }
 }
