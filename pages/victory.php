@@ -64,7 +64,11 @@
     </aside>
     <p id="title">Victory</p>
     <div class="box">
-        <p id="text">You completed the <?= $_SESSION["actual_level"][0] ?> level.</p>
+        <?php if ($_SESSION['survivalMode']) :?>
+            <p id="text">You completed the level.</p>
+        <?php else :?>
+            <p id="text">You completed the <?= $_SESSION["actual_level"][0] ?> level.</p>
+        <?php endif; ?>
         <form action="../functions.php" method="post" id="form-home">
             <input title="(Alt + H)" type="submit" name="home" value="Home" accesskey="H" />
         </form>
