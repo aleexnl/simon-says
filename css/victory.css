@@ -21,7 +21,7 @@ p#title {
     width: 100%;
     font-family: AmongUsFont;
     animation: 1.25s both titleEffect;
-    margin-top: 1em;
+    margin-top: 1em 0;
 }
 
 div.box {
@@ -30,7 +30,8 @@ div.box {
     box-shadow: 0 0 65px 75px #0ff;
     margin: auto;
     border: 0px #0000;
-    margin-top: 35px;
+    margin-top: 10em;
+    margin-bottom: 7em;
     border-radius: 29px;
     display: flex;
     flex-flow: row wrap;
@@ -41,7 +42,7 @@ p#text {
     color: #000;
     text-align: center;
     width: 100%;
-    margin: 5px 0 5px 0;
+    margin: 5px 0;
     font-weight: bold;
 }
 
@@ -72,10 +73,7 @@ form#form-save {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
 }
 
 p.level-code {
@@ -111,12 +109,7 @@ p.level-code {
         margin: 5% 0 1em 0;
     }
 
-    footer {
-        position: relative;
-    }
-
     div.box {
-        margin-bottom: 7em;
         box-shadow: 0 0 50px 58px #0ff;
     }
 

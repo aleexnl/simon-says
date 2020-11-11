@@ -28,6 +28,7 @@ tbody tr td button {
 .container {
     text-align: center;
 }
+
 .container h1 {
     font-size: 80px;
     font-weight: bold;
@@ -35,6 +36,7 @@ tbody tr td button {
     text-align: center;
     margin: 1rem 0 0 0;
 }
+
 #btn-start,
 #btn-resolve {
     font-size: 1.5rem;
@@ -42,6 +44,7 @@ tbody tr td button {
     margin: 1rem 0;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
 }
+
 #btn-start,
 #btn-resolve:hover {
     cursor: pointer;
@@ -54,6 +57,16 @@ tbody tr td button {
 
 #BarContent {
     text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+.countdown {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.color-red {
+    color: red;
 }
 
 #Bar {
@@ -69,9 +82,20 @@ tbody tr td button {
     background-color: #2e9cca;
     width: 0%;
 }
+
+/*** 800X600 ***/
 @media (max-width: 800px) {
     tbody tr td button {
         height: 70px;
         width: 70px;
+    }
+}
+
+/*** 375X667 ***/
+@media (max-width: 375px) {
+
+    #btn-start,
+    #btn-resolve {
+        padding: 0.5rem 1rem;
     }
 }

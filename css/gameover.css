@@ -9,6 +9,10 @@ body {
     padding: 0;
 }
 
+h1 {
+    font-size: 1em;
+}
+
 p#title {
     font-size: 8em;
     font-weight: bold;
@@ -17,7 +21,7 @@ p#title {
     width: 100%;
     font-family: AmongUsFont;
     animation: 1.25s both titleEffect;
-    margin-top: 1em;
+    margin: 1em 0;
 }
 
 div.box {
@@ -26,7 +30,8 @@ div.box {
     box-shadow: 0 0 65px 75px #821f0b;
     margin: auto;
     border: 0px #0000;
-    margin-top: 35px;
+    margin-top: 10em;
+    margin-bottom: 7em;
     border-radius: 29px;
     display: flex;
     flex-flow: row wrap;
@@ -64,10 +69,7 @@ form#form-save {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
 }
 
 p.level-code {
@@ -86,7 +88,6 @@ p.level-code {
     }
 }
 
-
 /*** 1366x768 ***/
 @media (max-width: 1366px) {}
 
@@ -104,12 +105,7 @@ p.level-code {
         margin: 5% 0 1em 0;
     }
 
-    footer {
-        position: relative;
-    }
-
     div.box {
-        margin-bottom: 7em;
         box-shadow: 0 0 50px 58px #821f0b;
     }
 

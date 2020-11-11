@@ -10,9 +10,11 @@ body {
     color: rgb(255, 255, 255);
     font-family: "Ubuntu Mono", monospace;
     margin: 0;
+    overflow-x: hidden;
 }
 
-header {
+header,
+aside {
     background-color: rgb(17, 17, 17);
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
     display: flex;
@@ -21,7 +23,8 @@ header {
     height: 5rem;
 }
 
-header a {
+header a,
+aside a {
     text-decoration: none;
     color: rgb(255, 255, 255);
     margin: 0 1rem;
@@ -52,9 +55,155 @@ button:disabled {
     text-align: center;
 }
 
+aside {
+    display: none;
+}
+
+aside .aside-menu {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    z-index: 200000;
+    opacity: 1;
+}
+
+.circle-in,
+.line1-in {
+    transition: .5s;
+}
+
+.circle-in {
+    stroke-dasharray: 1130 1300;
+    stroke-dashoffset: -10 !important;
+}
+
+.line1-in {
+    transform: rotate(-45deg) translate(-56%, 38%) scalex(1.1);
+}
+
+.line2-in {
+    transform: rotate(45deg) translate(15%, -68%) scalex(1.1);
+    transition: .5s;
+}
+
+.circle {
+    stroke: #31d7b7;
+    stroke-dasharray: 1130 1300;
+    stroke-dashoffset: -1270;
+    transition: all .5s ease-out;
+    transition: .5s;
+}
+
+.line-1,
+.line-2 {
+    stroke: #31d7b7;
+    transition: all .5s ease-out;
+}
+
+.open-page-navbar {
+    transform: translate(100vw) !important;
+    transition: .5s !important;
+}
+
+.navbar-page {
+    box-shadow: -6px 0 23px -14px #3a364d;
+    width: 50%;
+    height: 100vh;
+    background: #080808;
+    opacity: .97;
+    position: absolute;
+    right: -100vw;
+    top: 0;
+    transform: translate(-100vw);
+    transition: .5s;
+    z-index: 2000;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+}
+
+.blindness {
+    display: flex;
+    cursor: pointer;
+}
+
+.blindness div {
+    margin: auto;
+}
+
+.blindness h2 {
+    margin: 0.83em auto 0.83em 0;
+}
+
+/***Switch settings***/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 33px;
+    height: 20px;
+    margin: 0 5px 0 15px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(11px);
+    -ms-transform: translateX(11px);
+    transform: translateX(11px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 10px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
 /*** 800X600 ***/
 @media (max-width: 800px) {
-    header {
+
+    header,
+    aside {
         height: 4rem;
     }
 
@@ -62,9 +211,29 @@ button:disabled {
         font-size: 1.5em !important;
     }
 }
+
+@media (max-width: 500px) {
+    header {
+        display: none;
+    }
+
+    aside {
+        display: block;
+    }
+
+    .switch {
+        margin-left: 0;
+    }
+
+    #username {
+        position: fixed;
+        margin-left: 35px;
+    }
+}
+
 /*** 375X667 ***/
 @media (max-width: 375px) {
-    header {
+    aside {
         height: 3rem;
     }
 
