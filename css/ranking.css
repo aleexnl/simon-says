@@ -101,6 +101,7 @@ div.image-box img {
     }
 }
 
+
 @media (max-width: 1050px) {
     p.width-username {
         width: 7em;
@@ -125,5 +126,12 @@ div.image-box img {
 
     .survival {
         margin-top: 0.5em !important;
+    }
+}
+
+@media (max-width: 400px) {
+
+    h1.title {
+        font-size: 4.5em;
     }
 }

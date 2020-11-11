@@ -137,7 +137,7 @@ function setImposterModeTrue()
         $_SESSION["imposterMode"] =  true;
         resetPoints();
     }
-    if (isset($_POST['survivalMode']) or $_SESSION["survivalMode"]) {
+    if (isset($_POST['imposterMode']) or $_SESSION["imposterMode"]) {
         // FOLLOW WITH THE SAME IMPOSTER MODE
         $isImposter = true;
         $_SESSION["imposterMode"] =  true;
@@ -181,6 +181,7 @@ function setUsername()
 // GET SPECIFIED LEVEL WITH THE CODE LEVEL
 function getLevelFromCode()
 {
+    $_SESSION['easterEggColor'] = "none";
     if (isset($_POST['code'])) {
         $code = strtoupper(str_replace(" ", "", $_POST['code']));
         if (checkEasterEgg($code))
@@ -436,9 +437,20 @@ if (isset($_POST["next-level"]) || isset($_POST["home"]) || isset($_GET['goHome'
     } else {
         $_SESSION["points"] += $_SESSION["lvlPoints"];
         $_SESSION["actual_level"][5]++;
-        $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5]);
+        // IF USER COMPLETE ALL LEVELS SAVE POINTS AUTOMATICALLY 
+        if ($_SESSION["actual_level"][5] > 9) {
+            if ($_SESSION['endgame'] == "win")
+                $_SESSION["points"] += $_SESSION["lvlPoints"];
+            file_put_contents(__DIR__ . '/ranking.cfg', getUserDetails() . PHP_EOL, FILE_APPEND | LOCK_EX);
+        } else
+            $_SESSION["actual_level"] = get_level($_SESSION["actual_level"][5]);
     }
-    if (isset($_POST["next-level"]))
+    if ($_SESSION["actual_level"][5] > 9) {
+        $_SESSION["actual_level"] = get_level(0);
+        $_SESSION["points"] = 0;
+        $_SESSION["lvlPoints"] = 0;
+        header("location:pages/ranking.php");
+    } else if (isset($_POST["next-level"]))
         header("location:pages/game.php");
     else
         header("location:./");
