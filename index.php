@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simon-says</title>
@@ -31,6 +32,11 @@ if (!isset($_SESSION["actual_level"])) {
         <a href="./pages/ranking.php" accesskey="T">
             <h2><i class="fas fa-medal"></i>RANKING</h2>
         </a>
+        <label class="switch" title="deuteranopia">
+            <input id="chBox" type="checkbox" onclick='deuteranopia();'>
+            <span class="slider round"></span>
+        </label>
+        <h2 title="deuteranopia">Colorblind Mode</h2>
     </header>
     <div class="content">
         <div class="image">
@@ -81,6 +87,7 @@ if (!isset($_SESSION["actual_level"])) {
         </form>
     </div>
     <script src="js/index.js"></script>
+    <script src="js/blindness.js"></script>
 </body>
 
 </html>

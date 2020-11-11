@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--
-    TODO
-    HACER RESPONSIVE EL RANKING
-    HACER RESPONSIVE EL GAME
-    REVISAR EL RESPONSIVE DE LAS OTRAS PAGINAS
     CREAR UN SIDEMENU EN RESOLUCION MOBIL (SI DA TIEMPO)
-    EASTER EGG: SI EN EL INPUT CODE INTRODUCE AMONGUS:BLUE EN EL RANKING APARACERA UNA FOTO DE DICHO PERSONAJE, EL NOMBRE Y LA PUNTUACIÓN
 -->
 
 <head>
     <?php session_start(); ?>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/game.css">
@@ -30,6 +26,8 @@
     setSurvivalModeTrue();
     setUsername();
     resetDetails();
+
+    getLevelFromCode();
 
     if ($_SESSION['survivalCountdown'] <= 0)
         resetPoints();
@@ -54,11 +52,11 @@
             <h2 title="(Alt + T)"><i class="fas fa-medal"></i> RANKING</h2>
         </a>
         <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
-        <label class="switch">
-            <input id="chBox" type="checkbox" onclick='colorControl();'>
+        <label class="switch" title="deuteranopia">
+            <input id="chBox" type="checkbox" onclick='deuteranopia();'>
             <span class="slider round"></span>
         </label>
-        <h2>Colorblind mode</h2>
+        <h2 title="deuteranopia">Colorblind Mode</h2>
     </header>
 
     <?php
@@ -67,7 +65,7 @@
     ?>
 
     <script src="../js/game.js"></script>
-    <script src="../js/colorblindness.js"></script>
+    <script src="../js/blindness.js"></script>
 </body>
 
 </html>

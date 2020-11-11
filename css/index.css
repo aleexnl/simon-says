@@ -27,7 +27,7 @@ form {
     align-content: center;
     text-align: center;
     padding: 1%;
-    margin: 0;
+    margin: 0 0 2em 0;
 }
 
 .form-option {
@@ -61,7 +61,7 @@ form input {
 .input-code-lvl {
     width: 150px;
     text-align: center;
-}
+}  
 
 /*** 1366x768 ***/
 @media (max-width: 1366px) {

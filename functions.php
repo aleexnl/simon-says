@@ -12,9 +12,9 @@ function get_level($level_number)
 function getUserDetails()
 {
     if ($_SESSION['survivalMode'])
-        return $_SESSION['user'] . ";" . $_SESSION['survivalPoints'];
+        return $_SESSION['easterEggColor'] . ";" . $_SESSION['user'] . ";" . $_SESSION['survivalPoints'];
     else
-        return $_SESSION['user'] . ";" . $_SESSION['points'];
+        return $_SESSION['easterEggColor'] . ";" . $_SESSION['user'] . ";" . $_SESSION['points'];
 }
 
 // WRITE NEW USER IN RANKING FILE
@@ -31,8 +31,8 @@ function reedRankingFile($file)
     while (!feof($rankingFile)) {
         $line = fgets($rankingFile);
         if ($line != "") {
-            list($user, $punctuation) = explode(";", $line);
-            array_push($users, array("user" => $user, "punctuation" => intval($punctuation)));
+            list($color, $user, $points) = explode(";", $line);
+            array_push($users, array("color" => $color, "user" => $user, "points" => intval($points)));
         }
     }
     return $users;
@@ -183,6 +183,8 @@ function getLevelFromCode()
 {
     if (isset($_POST['code'])) {
         $code = strtoupper(str_replace(" ", "", $_POST['code']));
+        if (checkEasterEgg($code))
+            $code = explode(":", $code)[1];
         for ($index = 0; $index < 10; $index++) {
             $lvl = get_level($index);
             $lvlCode = str_replace("\n", "", get_level($index)[4]);
@@ -194,6 +196,24 @@ function getLevelFromCode()
             }
         }
     }
+}
+
+// CHECK IF USER USE THE EASTER EGG
+function checkEasterEgg($code)
+{
+    $numbersToVocals = [["4", "A"], ["3", "E"], ["1", "I"], ["0", "O"]];
+    $colors = ["BLACK", "BLUE", "BROWN", "CYAN", "GREEN", "LIME", "ORANGE", "PINK", "PURPLE", "RED", "WHITE", "YELLOW"];
+    if (substr($code, 0, 8) == "AMONGUS:") {
+        list($text, $character) = explode(":", $code);
+        foreach ($numbersToVocals as $value) {
+            $character = str_replace($value[0], $value[1], $character);
+        }
+        if (in_array($character, $colors))
+            $_SESSION['easterEggColor'] = strtolower($character);
+        else
+            $_SESSION['easterEggColor'] = "none";
+        return true;
+    } else return false;
 }
 
 // CHANGE USERNAME AND PUT LEVEL TO 0
@@ -247,8 +267,6 @@ function startCampaignMode($isImposter)
 {
     global $grid, $randomNumbers, $imposterSquares, $normalSquares;
     global $secondsToShow, $correctColor, $impostorColor;
-
-    getLevelFromCode();
 
     $correctColor = ctype_lower($_SESSION['actual_level'][0]);
     $impostorColor = "red";
@@ -335,6 +353,57 @@ function initializeSurvivalPoints()
 function initializeSurvivalCountdown()
 {
     isset($_SESSION['survivalCountdown']) ? '' : $_SESSION['survivalCountdown'] = 15;
+}
+
+// GET IMAGE COLOR FOR THE RANKING
+function getImageColor($color)
+{
+    if ($color == "none") return "";
+    else return "<img src='../img/colors/$color.png' alt='$color' />";
+}
+
+// CREATE TABLE USERS FOR THE RANKING PAGE
+function createRankingTable($users)
+{
+    return ("
+    <table cellspacing='0' cellpadding='0'>
+    <thead>" . getHeaderTable() . "</thead> 
+    <tbody>" . getUsersRanking($users) . "</tbody>
+    </table>");
+}
+
+function getHeaderTable()
+{
+    return ("
+    <tr class='first-table-cell'>
+        <td>
+            <p class='width-username table-title'>User</p>
+        </td>
+        <td>
+            <p class='width-points table-title'>Points</p>
+        </td>
+    </tr>
+    ");
+}
+
+function getUsersRanking($array)
+{
+    $users = "";
+    foreach ($array as $user) {
+        $users .= ("
+        <tr>
+            <td style='display: flex; flex-flow: row;'>
+                <div class='image-box'>
+                    " . getImageColor($user['color']) . "
+                </div>
+                <p class='username'>" . $user['user'] . "</p>
+            </td>
+            <td>
+                <p class='points'>" . $user['points'] . "</p>
+            </td>
+        </tr>");
+    }
+    return $users;
 }
 
 // SAVE USER POINTS IN THE RANKING FILE
