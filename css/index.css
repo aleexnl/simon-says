@@ -61,7 +61,7 @@ form input {
 .input-code-lvl {
     width: 150px;
     text-align: center;
-}
+}  
 
 /*** 1366x768 ***/
 @media (max-width: 1366px) {

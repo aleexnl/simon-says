@@ -33,6 +33,11 @@
         <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
             <h2 id="username"><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></h2>
         <?php endif ?>
+        <label class="switch" title="deuteranopia">
+            <input id="chBox" type="checkbox" onclick='deuteranopia();'>
+            <span class="slider round"></span>
+        </label>
+        <h2 title="deuteranopia">Colorblind Mode</h2>
     </header>
     <h1 class="title">Rankings</h1>
     <div class="ranking-box">
@@ -43,6 +48,7 @@
         <h2 class="subtitle survival">Survival</h2>
         <?= createRankingTable($usersSurvival) ?>
     </div>
+    <script src="../js/blindness.js"></script>
 </body>
 
 </html>
