@@ -64,7 +64,11 @@
     </aside>
     <p id="title">Game Over</p>
     <div class="box">
-        <p id="text">You didn't pass the <?= $_SESSION["actual_level"][0] ?> level</p>
+        <?php if ($_SESSION['survivalMode']) :?>
+            <p id="text">You didn't pass the level.</p>
+        <?php else :?>
+            <p id="text">You didn't pass the <?= $_SESSION["actual_level"][0] ?> level</p>
+        <?php endif; ?>
         <form action="../" method="post" id="form-home">
             <input title="(Alt + H)" type="submit" value="Home" accesskey="H" />
         </form>

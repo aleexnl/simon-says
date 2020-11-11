@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
-    CREAR UN SIDEMENU EN RESOLUCION MOBIL (SI DA TIEMPO)
--->
 
 <head>
     <?php session_start(); ?>
